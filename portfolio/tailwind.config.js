@@ -4,5 +4,16 @@ export default {
   theme: {
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    themeVariants({
+      themes: {
+        light: {
+          mediaQuery: prefersLight /* "@media (prefers-color-scheme: light)" */,
+        },
+        dark: {
+          mediaQuery: prefersDark /* "@media (prefers-color-scheme: dark)" */,
+        },
+      },
+    }),
+  ],
 };

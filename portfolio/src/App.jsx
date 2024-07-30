@@ -27,7 +27,7 @@ function App() {
             target="_blank"
             className="rounded border border-neutral-200 bg-neutral-50 px-2 py-0.5 text-neutral-900 no-underline dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-100 inline-flex"
           >
-            <img src={dyne} className=" h-3 my-auto mr-2 dark:invert"></img>
+            <img src={dyne} className=" h-3 my-auto mr-2 light:invert"></img>
             Dyne Research
           </a>{" "}
           and am a student at Sierra High School 🎓. I thrive on combining
@@ -83,8 +83,8 @@ function App() {
             <Project
               img={project1}
               title={"Personal Portfolio Website"}
-              link={"/"}
-              GitLink={"/"}
+              link={"https://sjasty-portfolio.vercel.app/"}
+              GitLink={"https://github.com/sasidharJasty/Portfolio"}
               description={
                 "A website built from scratch using React and Tailwind CSS. "
               }
