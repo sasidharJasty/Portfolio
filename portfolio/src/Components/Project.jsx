@@ -1,0 +1,28 @@
+export default function Project(props) {
+  return (
+    <div className="w-[20vw] h-fit border-neutral-200 bg-neutral-50 rounded-lg pb-2 pt-0.5 text-neutral-900 no-underline dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-100">
+      <img className="rounded-t-lg" src={props.img} alt={props.title}></img>
+      <div className="px-1">
+        <a href={props.link} target="_blank" className="text-xl underline">
+          {props.title} ↗
+        </a>
+        <p className="text-[--paragraph] text-sm my-2">{props.description}</p>
+        {props.GitLink ? (
+          <a href={props.GitLink} target="_blank" className="text-md underline">
+            Github↗
+          </a>
+        ) : null}
+        <div className="flex space-x-2 mt-2">
+          {props.tags.map((tag, index) => (
+            <p
+              key={index}
+              className="bg-gray-200 text-gray-800 dark:bg-neutral-700 dark:text-gray-300 rounded px-2 py-0.5"
+            >
+              {tag}
+            </p>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
