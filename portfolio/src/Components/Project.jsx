@@ -1,6 +1,6 @@
 export default function Project(props) {
   return (
-    <div className="w-[20vw] h-fit border-neutral-200 bg-neutral-50 rounded-lg pb-2 pt-0.5 text-neutral-900 no-underline dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-100">
+    <div className="w-[23vw] h-fit border-neutral-200 bg-neutral-50 rounded-lg pb-2 pt-0.5 text-neutral-900 no-underline dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-100">
       <img className="rounded-t-lg" src={props.img} alt={props.title}></img>
       <div className="px-1">
         <a href={props.link} target="_blank" className="text-xl underline">
