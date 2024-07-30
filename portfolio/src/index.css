@@ -5,7 +5,7 @@
 :root {
   background: white;
   color: black;
-  --paragraph: darkgray;
+  --paragraph: rgb(99, 99, 99);
 }
 
 @media (prefers-color-scheme: dark) {

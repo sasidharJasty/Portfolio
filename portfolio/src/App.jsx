@@ -1,4 +1,3 @@
-import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import django from "./assets/django.png";
 import python from "./assets/python.webp";
@@ -14,8 +13,6 @@ import YMP from "./assets/YMP.png";
 import HCCC from "./assets/HCCC.png";
 import Taskify from "./assets/Taskify.png";
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <>
       <Navbar />
