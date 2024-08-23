@@ -16,6 +16,22 @@ import SHS from "./assets/SHS.png";
 import Experience from "./Components/Experience";
 
 function App() {
+  const Skills = [
+    "JavaScript",
+    "TypeScript",
+    "React",
+    "Python",
+    "Django",
+    "SQL",
+    "HTML",
+    "CSS",
+    "Tailwind CSS",
+    "Chakra UI",
+    "Git",
+    "GitHub",
+    "APIs",
+    "REST API",
+  ];
   return (
     <>
       <Navbar />
@@ -166,6 +182,19 @@ function App() {
             }
             time_line={"June 2023 - Present"}
           />
+        </div>
+        <hr className="my-5 " id="experience"></hr>
+        <div>
+          <h1 className="text-3xl mb-6">Skills 🛠️</h1>
+          <div className=" justify-center text-center">
+            {Skills.map((skill) => {
+              return (
+                <div className="dark:bg-neutral-100 bg-neutral-800 p-2 rounded-md h-fit text-sm inline-block m-1 mx-2 text-white dark:text-black">
+                  {skill}
+                </div>
+              );
+            })}
+          </div>
         </div>
         <hr className="my-5 mt-14 "></hr>
         <div>
