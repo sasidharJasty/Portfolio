@@ -6,6 +6,7 @@
   background: white;
   color: black;
   --paragraph: rgb(99, 99, 99);
+  scroll-behavior: smooth;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -13,6 +14,7 @@
     color: white;
     --paragraph: rgb(173, 173, 173);
 
-    background: #111010;
+    background: #08090a;
+    scroll-behavior: smooth;
   }
 }

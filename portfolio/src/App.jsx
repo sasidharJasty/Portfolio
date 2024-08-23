@@ -12,16 +12,23 @@ import DyneProj from "./assets/DyneHome.png";
 import YMP from "./assets/YMP.png";
 import HCCC from "./assets/HCCC.png";
 import Taskify from "./assets/Taskify.png";
+import SHS from "./assets/SHS.png";
+import Experience from "./Components/Experience";
+
 function App() {
   return (
     <>
       <Navbar />
-      <div className="max-w-screen w-[800px] min-w-[800px] mx-auto mt-24 text-left">
+      <div
+        className="max-w-screen w-[800px] min-w-[800px] mx-auto mt-24 text-left scroll-smooth"
+        id="home"
+      >
         <h1 className="text-3xl ">Hi, I am Sasidhar Jasty 👋</h1>
 
-        <p className="text-[--paragraph] mt-5 ">
-          I'm a full stack web developer, student, and AI enthusiast. 👨‍💻📚 I
-          work on web development projects at{" "}
+        <p className="text-[--paragraph] mt-5 text-sm">
+          I'm a <span className=" text-white">full stack web developer</span>,
+          student, and AI enthusiast. 👨‍💻📚 I work on{" "}
+          <span className=" text-white">web development projects</span> at{" "}
           <a
             href="https://www.dyneresearch.com/"
             target="_blank"
@@ -33,9 +40,9 @@ function App() {
             ></img>
             Dyne Research
           </a>{" "}
-          and am a student at Sierra High School 🎓. I thrive on combining
-          academic rigor with practical experience, continually expanding my
-          skills in{" "}
+          and am a <span className=" text-white">student</span> at Sierra High
+          School 🎓. I thrive on combining academic rigor with practical
+          experience, continually expanding my skills in{" "}
           <a
             href="https://react.dev/"
             target="_blank"
@@ -79,9 +86,85 @@ function App() {
         <div>
           <img src={profile} className="mt-5 rounded-xl shadow-2xl"></img>
         </div>
-        <hr className="my-5 "></hr>
+
+        <hr className="my-5 " id="experience"></hr>
         <div>
-          <h1 className="text-3xl ">Projects 💻</h1>
+          <h1 className="text-3xl mb-6">Experience 🧑‍💻</h1>
+          <Experience
+            img={
+              "https://framerusercontent.com/images/yz1gg8ogR71UOP4vNUwRW2WcrY.png"
+            }
+            title={"Youth Mentorship Project"}
+            short_description={"Lead Full Stack Web Developer"}
+            description={
+              "Led a small team of developers to create the employee/ Volunteer management system to track hours and events. This was achieved by using a Tech stack made up of React, Django and Django Rest Api. Set up prototype version on vercel and built a responsive web application."
+            }
+            time_line={"September 2023 - July 2024"}
+          />
+          <Experience
+            img={dyne}
+            title={"Dyne Research"}
+            short_description={"Full Stack Web Developer"}
+            description={
+              "I led the design and development of all web applications at Dyne Research. Using technologies such as React for front-end development, and Django Rest API for back-end work. I oversee the integration of various APIs to ensure seamless functionality across our platforms. Leading to over 100% more web traffic to the website and over a 30% increase in web traffic to customer turnout rate from the website."
+            }
+            time_line={"March 2023 - Present"}
+          />
+          <Experience
+            img={
+              "https://media.licdn.com/dms/image/v2/D4E0BAQGJ5j3fUqrp5Q/company-logo_200_200/company-logo_200_200/0/1708200043507/theheadstarter_logo?e=1732147200&v=beta&t=4TOvvfNXmbu8nawZFgTkaV86ORc8HaAJ9CEcssohgl4"
+            }
+            title={"Headstarter SWE Fellowship"}
+            short_description={"Software Engineering Fellow"}
+            description={
+              "In the Headstarter Fellowship, I transformed my ideas into tangible projects through hands-on experience and guidance from industry leaders. I gained crucial skills in project development, leadership, and scaling solutions. The fellowship's structured approach and strong peer network played a key role in shaping my ideas and overcoming obstacles along the way."
+            }
+            time_line={"June 2024 - August 2024"}
+          />
+        </div>
+        <hr className="my-5 mt-14"></hr>
+        <div>
+          <h1 className="text-3xl mb-6" id="education">
+            Education 📖
+          </h1>
+          <Experience
+            img={
+              "https://media.licdn.com/dms/image/v2/C4D0BAQH4v0G7qtO5UQ/company-logo_200_200/company-logo_200_200/0/1668195915807/buildspaceso_logo?e=1732147200&v=beta&t=lHPhf817KYpXiRNo55ANxc4wcngawxo1XqXd8aq4PmY"
+            }
+            title={"Buildspace"}
+            short_description={"Participated in s5"}
+            description={
+              "In Buildspace S5, I took my project from idea to launch through hands-on work and expert mentorship. I learned valuable skills in development, project management, and scaling products. The program's structured approach and community support were instrumental in refining my ideas and overcoming challenges."
+            }
+            time_line={"2023 - 2024"}
+            badge={["teamwork", "Entrepretunure"]}
+          />
+          <Experience
+            img={SHS}
+            title={"Sierra High School"}
+            short_description={"Class of 2027 | CS Student"}
+            description={
+              "I am a Student at Sierra High, I am currently a 10th Grader with a 4.0 GPA and I am currently taking multiple AP's and Honors courses. While also pursuing my hobby of programming by taking on projects and exploring the latest trends."
+            }
+            time_line={"November 2023 - Present"}
+          />
+          <Experience
+            img={
+              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQnvOhDG6Sr_iFOK7EClRvpRAPR_gH6bvd8g&s"
+            }
+            title={"Diablo Valley College"}
+            short_description={"Pursuing CS associate degree"}
+            description={
+              "As a Dual Enrollment student at Diablo Valley College, I'm actively pursuing an Associate Degree in Computer Science. I'm taking advanced college-level courses to deepen my understanding of programming, algorithms, and software development. This experience is enhancing my technical skills and preparing me for a seamless transition to a four-year university and a career in tech."
+            }
+            time_line={"June 2023 - Present"}
+          />
+        </div>
+        <hr className="my-5 mt-14 "></hr>
+        <div>
+          <h1 className="text-3xl " id="projects">
+            Projects 💻
+          </h1>
           <div className="grid grid-cols-2 gap-4 justify-between mt-4">
             <Project
               img={project1}
