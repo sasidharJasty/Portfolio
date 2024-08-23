@@ -46,7 +46,9 @@ function App() {
           <span className=" dark:text-white text-black">
             full stack web developer
           </span>
-          , student, and AI enthusiast. 👨‍💻📚 I work on{" "}
+          , student, and{" "}
+          <span className=" dark:text-white text-black">AI enthusiast</span>.
+          👨‍💻📚 I work on{" "}
           <span className=" dark:text-white text-black">
             web development projects
           </span>{" "}
