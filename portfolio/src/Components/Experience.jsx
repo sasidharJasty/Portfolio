@@ -19,7 +19,7 @@ export default function Experience(props) {
 
   return (
     <div
-      className="w-full relative flex flex-col cursor-pointer"
+      className="w-full relative flex flex-col cursor-pointer my-2"
       onClick={handleClick}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
@@ -27,7 +27,7 @@ export default function Experience(props) {
       <div className="flex items-center">
         <img
           src={props.img}
-          className="w-[50px] h-[50px] p-[5px] object-contain rounded-xl"
+          className={`w-[50px] h-[50px] p-[5px] object-contain rounded-xl ${props.img_class}`}
           alt={props.title}
         />
         <div className="ml-2 flex flex-col">
@@ -75,7 +75,7 @@ export default function Experience(props) {
               )}
             </span>
           </h1>
-          <p className="text-xs text-neutral-300 ml-0">
+          <p className="text-xs text-neutral-600 dark:text-neutral-300 ml-0">
             {props.short_description}
           </p>
         </div>

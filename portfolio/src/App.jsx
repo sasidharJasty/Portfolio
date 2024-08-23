@@ -26,9 +26,15 @@ function App() {
         <h1 className="text-3xl ">Hi, I am Sasidhar Jasty 👋</h1>
 
         <p className="text-[--paragraph] mt-5 text-sm">
-          I'm a <span className=" text-white">full stack web developer</span>,
-          student, and AI enthusiast. 👨‍💻📚 I work on{" "}
-          <span className=" text-white">web development projects</span> at{" "}
+          I'm a{" "}
+          <span className=" dark:text-white text-black">
+            full stack web developer
+          </span>
+          , student, and AI enthusiast. 👨‍💻📚 I work on{" "}
+          <span className=" dark:text-white text-black">
+            web development projects
+          </span>{" "}
+          at{" "}
           <a
             href="https://www.dyneresearch.com/"
             target="_blank"
@@ -40,9 +46,9 @@ function App() {
             ></img>
             Dyne Research
           </a>{" "}
-          and am a <span className=" text-white">student</span> at Sierra High
-          School 🎓. I thrive on combining academic rigor with practical
-          experience, continually expanding my skills in{" "}
+          and am a <span className=" dark:text-white text-black">student</span>{" "}
+          at Sierra High School 🎓. I thrive on combining academic rigor with
+          practical experience, continually expanding my skills in{" "}
           <a
             href="https://react.dev/"
             target="_blank"
@@ -103,6 +109,7 @@ function App() {
           />
           <Experience
             img={dyne}
+            img_class={"invert dark:invert-0"}
             title={"Dyne Research"}
             short_description={"Full Stack Web Developer"}
             description={
