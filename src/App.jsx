@@ -38,10 +38,11 @@ function App() {
     <>
       <Navbar />
       <div
-        className="max-w-screen w-[800px] min-w-[800px] mx-auto mt-24 text-left scroll-smooth"
+        className="max-w-screen md:w-[800px] w-screen min-w-screen md:px-0 px-2  md:min-w-[800px] mx-auto mt-24 text-left scroll-smooth"
         id="home"
       >
-        <h1 className="text-4xl relative w-full">Hi, I am Sasidhar Jasty 👋 <a href={"https://drive.google.com/file/d/1xFxMNb-wYGq_m_tc8eAH44M5cQLzA109/view?usp=sharing"} target="_blank" className="dark:bg-neutral-100 bg-neutral-800 p-2 py-1 rounded-md h-fit  text-sm  text-white dark:text-black mx-auto w-fit text-md absolute right-0 "> Download My Resume</a></h1>
+        <div className="relative w-full flex md:flex-row flex-col"> <h1 className="md:text-4xl text-3xl w-fit">Hi, I am Sasidhar Jasty 👋 </h1> <a href={"https://drive.google.com/file/d/1xFxMNb-wYGq_m_tc8eAH44M5cQLzA109/view?usp=sharing"} target="_blank" className="dark:bg-neutral-100 hidden md:block bg-neutral-800 p-2 py-1 rounded-md h-fit  text-sm  text-white dark:text-black mx-auto w-fit text-md absolute right-0 "> Download My Resume</a></div>
+        <a href={"https://drive.google.com/file/d/1xFxMNb-wYGq_m_tc8eAH44M5cQLzA109/view?usp=sharing"} target="_blank" className="dark:bg-neutral-100 md:hidden block bg-neutral-800 p-2 py-1 rounded-md h-fit  text-sm  text-white dark:text-black mt-1 w-fit text-md  "> Download My Resume</a>
 
         <p className="text-[--paragraph] mt-5 text-sm">
           I'm a{" "}
@@ -199,7 +200,7 @@ function App() {
           </div>
         </div>
         <hr className="my-5 mt-14" id="hackathon"></hr>
-        <div className="mx-auto my-24"> <div className="dark:bg-neutral-100 bg-neutral-800 p-2 py-1 rounded-md h-fit  text-sm  text-white dark:text-black mx-auto w-fit text-lg">Hackathons</div> <h1 className="w-fit mx-auto text-[50px] font-bold">Check out my recent Hacks</h1> <p className="mx-auto text-lg w-[80%] text-neutral-400 text-center">I've participated in various hackathons, collaborating on projects ranging from simple prototypes to fully functional applications. Here are a few of my favorite.
+        <div className="mx-auto my-24"> <div className="dark:bg-neutral-100 bg-neutral-800 p-2 py-1 rounded-md h-fit    text-white dark:text-black mx-auto w-fit text-lg">Hackathons</div> <h1 className="w-fit mx-auto text-center text-[50px] font-bold">Check out my recent Hacks</h1> <p className="mx-auto text-lg w-[80%] text-neutral-400 text-center">I've participated in various hackathons, collaborating on projects ranging from simple prototypes to fully functional applications. Here are a few of my favorite.
 </p> </div>
         <div>
           
@@ -292,12 +293,12 @@ function App() {
        
         <hr className="my-5 mt-14 "></hr>
  
-        <div className="mx-auto my-24"> <div className="dark:bg-neutral-100 bg-neutral-800 p-2 py-1 rounded-md h-fit  text-sm  text-white dark:text-black mx-auto w-fit text-lg">My Projects</div> <h1 className="w-fit mx-auto text-[50px] font-bold">Check out my latest work</h1> <p className="mx-auto text-lg w-[60%] text-neutral-400 text-center">I've worked on a variety of projects, from simple websites to complex web applications. Here are a few of my favorites.
+        <div className="mx-auto my-24"> <div className="dark:bg-neutral-100 bg-neutral-800 p-2 py-1 rounded-md h-fit   text-white dark:text-black mx-auto w-fit text-lg">My Projects</div> <h1 className="w-fit mx-auto text-[50px] font-bold text-center">Check out my latest work</h1> <p className="mx-auto text-lg w-[60%] text-neutral-400 text-center">I've worked on a variety of projects, from simple websites to complex web applications. Here are a few of my favorites.
 
 </p> </div>
         <div>
           
-          <div className="grid grid-cols-2 gap-4 justify-between mt-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 justify-between mt-4 w-fit mx-auto">
             
             <Project
               img={"https://i.ibb.co/Qj8rzbF/Screenshot-376.png"}

@@ -7,6 +7,7 @@
   color: black;
   --paragraph: rgb(99, 99, 99);
   scroll-behavior: smooth;
+  padding: 0 0 0 0;
 }
 
 @media (prefers-color-scheme: dark) {
