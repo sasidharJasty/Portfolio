@@ -5,9 +5,7 @@
 :root {
   background: white;
   color: black;
-  --paragraph: rgb(99, 99, 99);
-  scroll-behavior: smooth;
-  padding: 0 0 0 0;
+  --paragraph: darkgray;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -15,11 +13,6 @@
     color: white;
     --paragraph: rgb(173, 173, 173);
 
-    background: #08090a;
-    scroll-behavior: smooth;
+    background: #111010;
   }
-}
-
-html {
-  scroll-behavior: smooth;
 }
