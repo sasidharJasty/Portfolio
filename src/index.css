@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  background: white;
+  color: black;
+  --paragraph: darkgray;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color: white;
+    --paragraph: rgb(173, 173, 173);
+
+    background: #111010;
+  }
+}
