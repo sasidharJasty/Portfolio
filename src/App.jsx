@@ -3,6 +3,7 @@
 import * as React from "react";
 import { useEffect, useState } from "react";
 import { Github, Instagram, Linkedin, Printer, Youtube, Mail } from "lucide-react";
+import { Analytics } from "@vercel/analytics/react";
 
 import {
   CommandDialog,
@@ -603,6 +604,7 @@ function App() {
           Press <span className="px-2 py-1 rounded bg-[#252525] border-white/60 shadow-lg border">Cmd</span> + <span className="px-2 py-1 rounded bg-[#252525] border-white/60 shadow-lg border">K</span> to open command palette
         </div>
       )}
+      <Analytics />
     </>
   );
 }
