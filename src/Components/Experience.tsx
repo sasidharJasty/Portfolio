@@ -1,16 +1,8 @@
 import { useState } from "react";
+import * as React from "react";
 //import Badge from "./Badge";
 
-export default function Experience(props: {
-  title: string;
-  img: string;
-  img_class?: string;
-  short_description: string;
-  description: string;
-  time_line: string;
-  badge?: string;
-  children?: React.ReactNode;
-}) {
+export default function Experience(props) {
   const [isHovered, setIsHovered] = useState(false);
   const [isDescriptionVisible, setIsDescriptionVisible] = useState(false);
 
@@ -28,17 +20,19 @@ export default function Experience(props: {
 
   return (
     <div
-      className="w-full relative flex flex-col cursor-pointer my-1 p-2 rounded-2xl border border-transparent hover:border-neutral-200 dark:hover:border-neutral-700 hover:bg-neutral-50 dark:hover:bg-neutral-800/50 transition-all duration-300 group"
+      className=" w-full relative flex flex-col cursor-pointer my-1 p-2 rounded-2xl border border-transparent hover:border-neutral-200 dark:hover:border-neutral-700 hover:bg-neutral-50 dark:hover:bg-neutral-800/50 transition-all duration-300 group"
       onClick={handleClick}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
       <div className="flex items-center">
+        <span className={`w-12 h-12 object-contain rounded-xl bg-white dark:bg-neutral-800 shadow-sm inline-flex items-center justify-center ${props.div_class}`}>
         <img
           src={props.img}
-          className={`w-12 h-12 p-2 object-contain rounded-xl bg-white dark:bg-neutral-800 shadow-sm ${props.img_class}`}
+          className={` p-2 ${props.img_class}`}
           alt={props.title}
-        />
+          />
+        </span>
         <div className="ml-4 flex flex-col">
           <div className="flex items-center gap-2">
             <h1
@@ -90,13 +84,14 @@ export default function Experience(props: {
             {props.short_description}
           </p>
         </div>
-        <div className="absolute top-0 right-0 justify-items-end flex flex-col items-end">
-          <h3 className="text-neutral-400 text-xs font-medium pt-5 pr-6">
-            {props.time_line}
-          </h3>
-          <div className="mt-2">
+        <div className="absolute top-0 right-0 justify-items-end flex flex-row items-end">
+          <div className="mb-4">
             {props.children}
           </div>
+          <h3 className="text-neutral-400 text-xs font-medium p-5 mt-2 pr-6">
+            {props.time_line}
+          </h3>
+
         </div>
       </div>
 

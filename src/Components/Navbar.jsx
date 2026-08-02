@@ -1,6 +1,7 @@
 import { DiGithubBadge } from "react-icons/di";
 import { AiFillLinkedin, AiFillMail } from "react-icons/ai";
 import { Home, User, Briefcase, Code, Mail } from "lucide-react";
+import * as React from "react";
 
 export default function Navbar() {
   const navItems = [

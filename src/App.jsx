@@ -1,23 +1,37 @@
-"use client";
-
-//import * as React from "react";
+import * as React from "react";
 import { useEffect, useState } from "react";
-import { Github, Instagram, Linkedin, Printer,  Mail, ExternalLink } from "lucide-react";
+import { Github, Instagram, Linkedin, Printer,  Mail, ExternalLink, GitBranch } from "lucide-react";
 import { Analytics } from "@vercel/analytics/react";
 
-import {
-  CommandDialog,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList,
-} from "./Components/command.tsx"; // Adjust the import path as necessary
 import pytorch from "./assets/pytorch.png";
 import tensorflow from "./assets/tensorflow.webp";
+import mantecaScholarsImage from "./assets/ms.png"
+import mantecaScholarsImage2 from "./assets/ms2.png";
+import exo1 from "./assets/exo1.png";
+import exo2 from "./assets/exo2.png";
+
+import HackathonWebsite from "./assets/HackathonWebsite1.png";
+import HackathonWebsite2 from "./assets/HackathonWebsite2.png";
+
+import kbImage1 from "./assets/KBimage1.png";
+import kbImage2 from "./assets/KBimage2.png";
+
+import cycleGanImage from "./assets/CycleGan.png";
+import cycleGanImage2 from "./assets/CycleGan2.png";
+
+import lightCurveImage from "./assets/LightCurves.svg";
+import lightCurveImage2 from "./assets/LightCurves2.svg";
+
 
 import python from "./assets/python.webp";
 import profile from "./assets/profile.jpg";
+
+import viking from "./assets/viking.webp";
+import cogni from "./assets/cogni.jpg";
+import la from "./assets/la.png";
+import blu from "./assets/blu.png";
+import mateo from "./assets/234.webp";
+
 
 import {
   Dialog,
@@ -35,9 +49,6 @@ import AIEA from "./assets/AIEA.png";
 import dyne from "./assets/Dyne.avif";
 import CodeCatalyst from "./assets/CodeCatalyst.png";
 
-//import YMP from "./assets/YMP.png";
-//import HCCC from "./assets/HCCC.png";
-//import Taskify from "./assets/Taskify.png";
 import SHS from "./assets/SHS.png";
 import Experience from "./Components/Experience";
 import buildspace from "./assets/buildspace.png";
@@ -46,9 +57,10 @@ import { motion } from "framer-motion";
 
 function App() {
   const [open, setOpen] = useState(false);
-  const [selectedIndex, setSelectedIndex] = useState(0); // Track the selected index
-  //const [scrolled, setScrolled] = useState(false); // Track if the user has scrolled down
+  const [selectedIndex, setSelectedIndex] = useState(0);
   const [selectedProject, setSelectedProject] = useState(null);
+  const [imagePreview, setImagePreview] = useState(null);
+
   const commandItems = [
     {
       label: "Download Resume",
@@ -82,7 +94,6 @@ function App() {
     },
   ];
 
-  // Toggle the menu when ⌘K is pressed
   useEffect(() => {
     const down = (e) => {
       if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
@@ -106,27 +117,13 @@ function App() {
     return () => document.removeEventListener("keydown", down);
   }, [open, selectedIndex]);
 
-  // Track scroll position
-  /*useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 0);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const runCommand = React.useCallback((command) => {
-    setOpen(false);
-    command();
-  }, []);*/
-
   const Skills = {
     "Languages": ["Python", "Java", "C++", "TypeScript", "JavaScript", "SQL", "HTML", "CSS"],
     "AI/ML": ["PyTorch", "TensorFlow", "Scikit-Learn", "Transformers", "Numpy"],
     "Web/Backend": ["React", "Next.js", "Django", "REST APIs", "Tailwind CSS", "Chakra UI"],
     "Tools & Other": ["Git", "GitHub", "Data Analysis", "Leadership"],
   };
+
   return (
     <>
       <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
@@ -141,7 +138,8 @@ function App() {
             repeat: Infinity,
             ease: "linear"
           }}
-          className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-blue-500/10 blur-[120px]"
+          className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-blue-500/10 blur-[120px] z-0 pointer-events-none"
+
         />
         <motion.div
           animate={{
@@ -154,12 +152,12 @@ function App() {
             repeat: Infinity,
             ease: "linear"
           }}
-          className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-purple-500/10 blur-[120px]"
+          className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-purple-500/10 blur-[120px] z-0 pointer-events-none"
         />
       </div>
       <Navbar />
       <motion.div
-        className="max-w-screen md:w-[800px] w-screen min-w-screen md:px-0 px-2 md:min-w-[800px] mx-auto mt-24 text-left scroll-smooth"
+        className="relative z-10 max-w-screen md:w-[800px] w-screen min-w-screen md:px-0 px-2 md:min-w-[800px] mx-auto mt-24 text-left scroll-smooth"
         id="home"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -197,7 +195,7 @@ function App() {
           </div>
         </div>
 
-        <div className="mt-16 mb-10">
+        <div className="mt-16 mb-10" id="about">
           <div className="flex items-center gap-4 mb-6">
             <h1 className="text-3xl font-bold">About Me ✍️</h1>
             <div className="h-px flex-1 bg-neutral-200 dark:bg-neutral-800"></div>
@@ -279,7 +277,7 @@ function App() {
           </p>
         </div>
 
-        <div className="flex flex-col gap-8 mt-12">
+        <div className="flex flex-col gap-8 mt-12" id="experience">
           <div className="flex items-center gap-4 mb-2">
             <h1 className="text-3xl font-bold">Experience 🧑‍💻</h1>
             <div className="h-px flex-1 bg-neutral-200 dark:bg-neutral-800"></div>
@@ -368,7 +366,7 @@ function App() {
               img={SHS}
               title={"Sierra High School"}
               short_description={"Class of 2027 | CS Student"}
-              description={"I am a Student at Sierra High, I am currently a 10th Grader with a 4.0 GPA and I am currently taking multiple AP's and Honors courses. While also pursuing my hobby of programming by taking on projects and exploring the latest trends."}
+              description={"I am a Student at Sierra High, I am currently a 11th Grader with a 4.0 GPA and I am currently taking multiple AP's and Honors courses. While also pursuing my hobby of programming by taking on projects and exploring the latest trends."}
               time_line={"November 2023 - Present"}
             />
             <Experience
@@ -380,8 +378,6 @@ function App() {
               time_line={"2023 - 2024"}
               badge={["teamwork", "Entrepretunure"]}
             />
-
-
           </div>
         </div>
         <div className="flex flex-col gap-8 mt-12">
@@ -409,200 +405,341 @@ function App() {
             ))}
           </div>
         </div>
-        <hr className="my-5 mt-14" id="hackathon"></hr>
-        <div className="mx-auto my-24">
-          {" "}
-          <div className="dark:bg-neutral-100 bg-neutral-800 p-2 py-1 rounded-md h-fit    text-white dark:text-black mx-auto w-fit text-lg">
-            Hackathons
-          </div>{" "}
-          <h1 className="w-fit mx-auto text-center text-[50px] font-bold">
-            Check out my recent Hacks
-          </h1>{" "}
-          <p className="mx-auto text-lg w-[80%] text-neutral-400 text-center">
-            I&apos;ve participated in various hackathons, collaborating on projects
-            ranging from simple prototypes to fully functional applications.
-            Here are a few of my favorite.
-          </p>{" "}
-        </div>
-        <div>
-          <Experience
-            img={
-              "https://www.hackakhan.org/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flogo.58eda19f.png&w=256&q=75"
-            }
-            img_class={""}
-            title={"Hackakhan"}
-            short_description={"Built a website for highschoolers"}
-            description={
-              "Built a website that allows students to get help in their school subjects by pairing them with a volunteer that is proficient in that subject."
-            }
-            time_line={"June 2024"}
-            badge={["teamwork", "Entrepretunure"]}
-          >
-            <a
-              href={"https://devpost.com/software/eduspark"}
-              className="dark:bg-neutral-100 bg-neutral-800 p-2 py-1 rounded-md h-fit  text-sm inline-block  text-white dark:text-black"
-            >
-              Devpost ↗️
-            </a>
-          </Experience>
-          <Experience
-            img={
-              "https://www.milpitashacks.com/assets/Milpitas%20Hacks%20Logo-BXy6iFST.png"
-            }
-            title={"Milpitas Hacks"}
-            short_description={"Built a website to manage volunteering"}
-            description={
-              "Developed an application that allows seamless storage of food drives, and a dashboard for volunteers and donors."
-            }
-            time_line={"May 2024"}
-          >
-            <a
-              href={"https://devpost.com/software/wecommunity-drive"}
-              className="dark:bg-neutral-100 bg-neutral-800 p-2 py-1 rounded-md h-fit  text-sm inline-block  text-white dark:text-black"
-            >
-              Devpost ↗️
-            </a>
-          </Experience>
-          <Experience
-            img={
-              "https://images.squarespace-cdn.com/content/v1/586af3379de4bb26823cf49f/51182e2c-694e-414e-8bb8-770f17fbd6de/anovahacks.png?format=100w"
-            }
-            title={"Anova Hacks"}
-            short_description={"Website to help connect users to organizations"}
-            description={
-              "Developed a website that connects volunteers with organizations to match their passions and expertise with causes needing support, from environmental conservation to education. "
-            }
-            time_line={"April 2024"}
-          >
-            <a
-              href={"https://github.com/sasidharJasty/anovahacks"}
-              className="dark:bg-neutral-100 bg-neutral-800 p-2 py-1 rounded-md h-fit  text-sm inline-block  text-white dark:text-black"
-            >
-              Devpost ↗️
-            </a>
-          </Experience>
-          <Experience
-            img={"https://www.mateohacks.com/img/icon.png"}
-            title={"Mateo Hacks"}
-            short_description={"Made a ML model for sign language"}
-            description={
-              "Developed a machine learning model to detect and interpret sign language gestures, enabling real-time communication."
-            }
-            time_line={"March 2024"}
-          ></Experience>
-          <Experience
-            img={"https://i.ibb.co/p35zV71/image-removebg-preview-1.png"}
-            title={"Lancer Hacks VII"}
-            short_description={"Website to report harassment"}
-            img_class={"dark:invert-0 invert"}
-            description={
-              "Created a website that allows individuals to anonymously report harassment or other violations while providing public access to aggregated data for awareness and prevention."
-            }
-            time_line={"March 2024"}
-          ></Experience>
-          <Experience
-            img={
-              "https://d112y698adiu2z.cloudfront.net/photos/production/judge_photos/002/538/373/datas/large.png"
-            }
-            title={"Oasis Hacks"}
-            short_description={"Website to report harassment"}
-            description={
-              "Designed and developed a website that enables students to discover volunteer opportunities and efficiently track their service hours."
-            }
-            time_line={"August 2023"}
-          ></Experience>
-        </div>
 
-        <div className="flex flex-col gap-8 mt-12">
+
+        <div className="flex flex-col gap-8 mt-12" id="projects">
           <div className="flex items-center gap-4 mb-2">
             <h1 className="text-3xl font-bold">My Projects</h1>
             <div className="h-px flex-1 bg-neutral-200 dark:bg-neutral-800"></div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 justify-between mt-4 w-fit mx-auto">
-            <Project
-              img={"https://i.ibb.co/Qj8rzbF/Screenshot-376.png"}
-              title="Arbor Bend (In Progress)"
-              date={"Nov 2024 - Present"}
-              link="https://arbor-bend.vercel.app/"
-              description="Currently developing an AI-powered marketplace that enables community residents to securely buy, sell, and exchange goods and services with their neighbors, fostering trust and local connections."
-              tags={["React.JS", "Django", "Shadcn UI", "REST APIs"]}
-              onClick={() => setSelectedProject({
-                title: "Arbor Bend (In Progress)",
-                date: "Nov 2024 - Present",
-                link: "https://arbor-bend.vercel.app/",
-                description: "Currently developing an AI-powered marketplace that enables community residents to securely buy, sell, and exchange goods and services with their neighbors, fostering trust and local connections.",
-                tags: ["React.JS", "Django", "Shadcn UI", "REST APIs"],
-                img: "https://i.ibb.co/Qj8rzbF/Screenshot-376.png"
-              })}
+          <Project
+            img={cycleGanImage}
+            title="CycleGAN"
+            date="2025"
+            GitLink="https://github.com/sasidharJasty/CycleGAN"
+            description="Built a PyTorch-based CycleGAN to tackle unpaired image-to-image translation. I designed custom generator and discriminator networks from scratch, heavily tuning cycle-consistency and adversarial loss functions. The biggest challenge was managing the end-to-end training loop and fighting off mode collapse to actually get high-fidelity, convincing image synthesis without needing paired datasets."
+            tags={[
+              "Python",
+              "PyTorch",
+              "GANs",
+              "Computer Vision",
+              "Deep Learning"
+            ]}
+            onClick={() =>
+              setSelectedProject({
+                title: "CycleGAN",
+                date: "2025",
+                GitLink: "https://github.com/sasidharJasty/CycleGAN",
+                description:
+                  "Built a PyTorch-based CycleGAN to tackle unpaired image-to-image translation. I designed custom generator and discriminator networks from scratch, heavily tuning cycle-consistency and adversarial loss functions. The biggest challenge was managing the end-to-end training loop and fighting off mode collapse to actually get high-fidelity, convincing image synthesis without needing paired datasets.",
+                tags: [
+                  "Python",
+                  "PyTorch",
+                  "GANs",
+                  "Computer Vision",
+                  "Deep Learning"
+                ],
+                img: cycleGanImage2
+              })
+            }
+          />
+          <Project
+            img={lightCurveImage}
+            title="LightCurves"
+            date="2026"
+            GitLink="https://github.com/sasidharJasty/LightCurves"
+            description="Created a machine learning toolkit specifically for analyzing time-series astronomical light curves to help identify exoplanets. I built automated data pipelines with Pandas and NumPy to clean up incredibly noisy flux data, then used Scikit-Learn to engineer periodic features and train the predictive models needed to automatically spot transit events."
+            tags={[
+              "Python",
+              "Pandas",
+              "NumPy",
+              "Scikit-Learn",
+              "Data Science"
+            ]}
+            onClick={() =>
+              setSelectedProject({
+                title: "LightCurves",
+                date: "2026",
+                GitLink: "https://github.com/sasidharJasty/LightCurves",
+                description:
+                  "Created a machine learning toolkit specifically for analyzing time-series astronomical light curves to help identify exoplanets. I built automated data pipelines with Pandas and NumPy to clean up incredibly noisy flux data, then used Scikit-Learn to engineer periodic features and train the predictive models needed to automatically spot transit events.",
+                tags: [
+                  "Python",
+                  "Pandas",
+                  "NumPy",
+                  "Scikit-Learn",
+                  "Data Science"
+                ],
+                img: lightCurveImage2
+              })
+            }
+          />
+          <Project
+            img={kbImage1}
+            title="LLM Logic"
+            date="2026 - Present"
+            GitLink="https://github.com/sasidharJasty/KB"
+            link="https://llm-logic.vercel.app/"
+            description="A neuro-symbolic AI framework that bridges the creativity of LLMs with the strict rules of deterministic reasoning engines. I implemented forward and backward chaining for first-order logic evaluation, and used LangChain and LangGraph to build stateful, multi-agent workflows. It's essentially a sandbox for prototyping AI that can actually perform structured deduction."
+            tags={[
+              "Python",
+              "LangGraph",
+              "LangChain",
+              "First-Order Logic",
+              "AI Agents",
+              "Symbolic AI"
+            ]}
+            onClick={() =>
+              setSelectedProject({
+                title: "LLM Logic",
+                date: "2026 - Present",
+                GitLink: "https://github.com/sasidharJasty/KB",
+                link: "https://llm-logic.vercel.app/",
+                description:
+                  "A neuro-symbolic AI framework that bridges the creativity of LLMs with the strict rules of deterministic reasoning engines. I implemented forward and backward chaining for first-order logic evaluation, and used LangChain and LangGraph to build stateful, multi-agent workflows. It's essentially a sandbox for prototyping AI that can actually perform structured deduction.",
+                tags: [
+                  "Python",
+                  "LangGraph",
+                  "LangChain",
+                  "First-Order Logic",
+                  "AI Agents",
+                  "Symbolic AI"
+                ],
+                img: kbImage2
+              })
+            }
+          />
+
+          <Project
+            img={exo1}
+            title="ExoNet"
+            date="2026"
+            link="https://exo-net.vercel.app/"
+            GitLink="https://github.com/sasidharJasty/ExoNet"
+            description="An end-to-end deep learning pipeline that classifies exoplanet transits from raw stellar data. I built a custom PyTorch neural network and spent a lot of time wrestling with the preprocessing—turning messy temporal arrays into normalized tensors. Iteratively tuning the model to maintain high precision-recall on a hugely imbalanced dataset was tough but rewarding."
+            tags={[
+              "Python",
+              "PyTorch",
+              "Deep Learning",
+              "Astronomy",
+              "Machine Learning"
+            ]}
+            onClick={() =>
+              setSelectedProject({
+                title: "ExoNet",
+                date: "2026",
+                link:"https://exo-net.vercel.app/",
+                GitLink: "https://github.com/sasidharJasty/ExoNet",
+                description:
+                  "An end-to-end deep learning pipeline that classifies exoplanet transits from raw stellar data. I built a custom PyTorch neural network and spent a lot of time wrestling with the preprocessing—turning messy temporal arrays into normalized tensors. Iteratively tuning the model to maintain high precision-recall on a hugely imbalanced dataset was tough but rewarding.",
+                tags: [
+                  "Python",
+                  "PyTorch",
+                  "Deep Learning",
+                  "Astronomy",
+                  "Machine Learning"
+                ],
+                img: exo2
+              })
+            }
             />
             <Project
-              img={"https://i.ibb.co/p1Q2WT9/Screenshot-2024-11-25-200556.png"}
-              title={"Hackathon Website (In Progress)"}
-              date={"Sept 2024 - Present"}
-              link={"https://cal-hacks25.vercel.app/"}
-              description={"Developed a dynamic hackathon website featuring advanced animations to enhance user engagement and provide an interactive experience."}
-              tags={["Next.js", "Typescript", "Magic UI", "Framer Motion"]}
-              onClick={() => setSelectedProject({
-                title: "Hackathon Website (In Progress)",
-                date: "Sept 2024 - Present",
-                link: "https://cal-hacks25.vercel.app/",
-                description: "Developed a dynamic hackathon website featuring advanced animations to enhance user engagement and provide an interactive experience.",
-                tags: ["Next.js", "Typescript", "Magic UI", "Framer Motion"],
-                img: "https://i.ibb.co/p1Q2WT9/Screenshot-2024-11-25-200556.png"
-              })}
+              img={mantecaScholarsImage}
+              title="Manteca Scholars"
+              date="2026 - Present"
+              link="https://www.mantecascholars.org/"
+              GitLink="https://github.com/sasidharJasty/MantecaScholars"
+              description="Built a full-stack platform from the ground up using Next.js and Supabase to help local students easily find scholarships and educational resources. It's a production-ready site with secure authentication and a snappy, responsive UI. It's been incredibly rewarding to see it grow and smoothly handle over 100 concurrent users looking for academic opportunities."
+              tags={[
+                "Next.js",
+                "TypeScript",
+                "React",
+                "Supabase",
+                "Tailwind CSS",
+                "Vercel"
+              ]}
+              onClick={() =>
+                setSelectedProject({
+                  title: "Manteca Scholars",
+                  date: "2026 - Present",
+                  link: "https://www.mantecascholars.org/",
+                  GitLink: "https://github.com/sasidharJasty/MantecaScholars",
+                  description:
+                    "Built a full-stack platform from the ground up using Next.js and Supabase to help local students easily find scholarships and educational resources. It's a production-ready site with secure authentication and a snappy, responsive UI. It's been incredibly rewarding to see it grow and smoothly handle over 100 concurrent users looking for academic opportunities.",
+                  tags: [
+                    "Next.js",
+                    "TypeScript",
+                    "React",
+                    "Supabase",
+                    "Tailwind CSS",
+                    "Vercel"
+                  ],
+                  img: mantecaScholarsImage2,
+                })
+              }
             />
-            <Project
-              img={project1}
-              date={"Oct 2024 - Nov 2024"}
-              title={"Personal Portfolio Website"}
-              link={"https://sjasty-portfolio.vercel.app/"}
-              GitLink={"https://github.com/sasidharJasty/Portfolio"}
-              description={"A website built from scratch using React and Tailwind CSS."}
-              tags={["React", "Tailwind", "Responsive"]}
-              onClick={() => setSelectedProject({
-                title: "Personal Portfolio Website",
-                date: "Oct 2024 - Nov 2024",
-                link: "https://sjasty-portfolio.vercel.app/",
-                GitLink: "https://github.com/sasidharJasty/Portfolio",
-                description: "A website built from scratch using React and Tailwind CSS.",
-                tags: ["React", "Tailwind", "Responsive"],
-                img: project1
-              })}
-            />
-            <Project
-              img={"https://i.ibb.co/frbVz2t/Screenshot-2024-11-25-183935.jpg"}
-              title={"Stock Market Prediction"}
-              date={"Nov 2024 - Nov 2024"}
-              link={"https://stockmarketprediction-5hejvhbgcu3bfxpbeys9ye.streamlit.app/"}
-              description={"Developed and deployed a stock price prediction app with sentiment analysis for real-time financial insights, utilizing linear regression and data analysis and visualization frameworks."}
-              tags={["Streamlit", "yFinance", "Pandas", "Numpy", "Skikit-learn"]}
-              onClick={() => setSelectedProject({
-                title: "Stock Market Prediction",
-                date: "Nov 2024 - Nov 2024",
-                link: "https://stockmarketprediction-5hejvhbgcu3bfxpbeys9ye.streamlit.app/",
-                description: "Developed and deployed a stock price prediction app with sentiment analysis for real-time financial insights, utilizing linear regression and data analysis and visualization frameworks.",
-                tags: ["Streamlit", "yFinance", "Pandas", "Numpy", "Skikit-learn"],
-                img: "https://i.ibb.co/frbVz2t/Screenshot-2024-11-25-183935.jpg"
-              })}
-            />
-            <Project
-              img={"https://i.ibb.co/Xtm5RS9/Screenshot-2024-11-25-195606.png"}
-              title={"Workflow"}
-              link={"https://taskify-theta-woad.vercel.app/"}
-              date={"June 2024 - Nov 2024"}
-              description={"Developed a comprehensive workflow management solution designed to enhance productivity, communication, and collaboration across your team."}
-              tags={["React", "PostgreSQL", "Django", "Tailwind CSS", "Magic UI"]}
-              onClick={() => setSelectedProject({
-                title: "Workflow",
-                date: "June 2024 - Nov 2024",
-                link: "https://taskify-theta-woad.vercel.app/",
-                description: "Developed a comprehensive workflow management solution designed to enhance productivity, communication, and collaboration across your team.",
-                tags: ["React", "PostgreSQL", "Django", "Tailwind CSS", "Magic UI"],
-                img: "https://i.ibb.co/Xtm5RS9/Screenshot-2024-11-25-195606.png"
-              })}
-            />
+          <Project
+            img={HackathonWebsite}
+            title={"Hackathon Website"}
+            date={"Sept 2024 - Present"}
+            link={"https://sierrahacks-ashen.vercel.app/"}
+            GitLink={"https://github.com/sasidharJasty/sierrahacks"}
+            description={"Designed and developed the main landing and registration portal for SierraHacks using Next.js and TypeScript. I wanted the site to feel alive and engaging, so I heavily utilized Framer Motion for smooth, interactive animations. It was awesome seeing it in the wild—it easily handled traffic spikes, driving over 120 registrations and running flawlessly for the past year."}
+            tags={["Next.js", "Typescript", "Magic UI", "Framer Motion"]}
+            onClick={() => setSelectedProject({
+              title: "Hackathon Website",
+              date: "Sept 2024 - Present",
+              link: "https://sierrahacks-ashen.vercel.app/",
+              GitLink: "https://github.com/sasidharJasty/sierrahacks",
+              description: "Designed and developed the main landing and registration portal for SierraHacks using Next.js and TypeScript. I wanted the site to feel alive and engaging, so I heavily utilized Framer Motion for smooth, interactive animations. It was awesome seeing it in the wild—it easily handled traffic spikes, driving over 120 registrations and running flawlessly for the past year.",
+              tags: ["Next.js", "Typescript", "Magic UI", "Framer Motion"],
+              img: HackathonWebsite2
+            })}
+          />
+          <Project
+            img={project1}
+            date={"Oct 2024 - present"}
+            title={"Personal Portfolio Website"}
+            link={"https://sjasty.vercel.app/"}
+            GitLink={"https://github.com/sasidharJasty/Portfolio"}
+            description={"Built my personal slice of the internet from scratch using React and Tailwind CSS. I focused heavily on making the design clean, responsive, and easily maintainable through reusable components. It was a great way to solidify my frontend fundamentals while creating something uniquely mine."}
+            tags={["React", "Tailwind", "Responsive"]}
+            onClick={() => setSelectedProject({
+              title: "Personal Portfolio Website",
+              date: "Oct 2024 - present",
+              link: "https://sjasty.vercel.app/",
+              GitLink: "https://github.com/sasidharJasty/Portfolio",
+              description: "Built my personal slice of the internet from scratch using React and Tailwind CSS. I focused heavily on making the design clean, responsive, and easily maintainable through reusable components. It was a great way to solidify my frontend fundamentals while creating something uniquely mine.",
+              tags: ["React", "Tailwind", "Responsive"],
+              img: project1
+            })}
+          />
+
           </div>
         </div>
+
+        {/* --- HACKATHONS SECTION START --- */}
+        <hr className="my-5 mt-14" id="hackathon"></hr>
+        <div className="mx-auto my-24">
+          <div className="dark:bg-neutral-100 bg-neutral-800 p-2 py-1 rounded-md h-fit text-white dark:text-black mx-auto w-fit text-lg">
+            Hackathons
+          </div>
+          <h1 className="w-fit mx-auto text-center text-[50px] font-bold mt-4">
+            Check out my recent Hackathons
+          </h1>
+          <p className="mx-auto text-lg w-[80%] text-neutral-400 text-center mt-2">
+            I&apos;ve participated in various hackathons, collaborating on projects
+            ranging from simple prototypes to fully functional applications.
+            Here are a few of my favorites.
+          </p>
+        </div>
+
+        {/* Grouping in flex-col with gap-6 for clean spacing */}
+        <div className="flex flex-col gap-6">
+          <Experience
+            img={viking}
+            img_class="invert-0 dark:invert"
+
+            title="VikingHacks 2026"
+            short_description="Pleasanton, CA"
+            description="Built a forensic surveillance platform that tracks individuals across camera feeds, generates millisecond-precise investigation timelines, and enables natural language evidence queries using custom computer vision pipelines."
+            time_line="Mar 2026"
+          >
+            <a
+              href="https://devpost.com/software/oversight-2nlvaj"
+              target="_blank"
+              rel="noreferrer"
+              className="mt-2 inline-flex items-center gap-1.5 dark:bg-neutral-100 bg-neutral-800 px-3 py-1.5 rounded-md text-sm font-medium text-white dark:text-black hover:scale-105 transition-all w-fit"
+            >
+              Devpost <ExternalLink className="w-3.5 h-3.5" />
+            </a>
+          </Experience>
+
+          <Experience
+            img={cogni}
+            img_class="!rounded-2xl"
+            title="CogniHacks 2025"
+            short_description="Pleasanton, CA"
+            description="Built an ML-powered healthcare tool that transcribes doctor-patient conversations, extracts medical entities, and generates summaries to improve patient adherence."
+            time_line="Aug 30, 2025"
+          >
+            <a
+              href="https://devpost.com/software/carelink-4bzyhi"
+              target="_blank"
+              rel="noreferrer"
+              className="mt-2 inline-flex items-center gap-1.5 dark:bg-neutral-100 bg-neutral-800 px-3 py-1.5 rounded-md text-sm font-medium text-white dark:text-black hover:scale-105 transition-all w-fit"
+            >
+              Devpost <ExternalLink className="w-3.5 h-3.5" />
+            </a>
+          </Experience>
+
+          <Experience
+            img={la}
+            title="Los Altos Hacks IX"
+            img_class="!rounded-2xl"
+            short_description="Sunnyvale, CA"
+            description="Built an ML-powered platform that forecasts food demand, classifies inventory, and optimizes redistribution to reduce waste and fight hunger."
+            time_line="Apr 6, 2025"
+          >
+            <a
+              href="https://devpost.com/software/nutrifresh"
+              target="_blank"
+              rel="noreferrer"
+              className="mt-2 inline-flex items-center gap-1.5 dark:bg-neutral-100 bg-neutral-800 px-3 py-1.5 rounded-md text-sm font-medium text-white dark:text-black hover:scale-105 transition-all w-fit"
+            >
+              Devpost <ExternalLink className="w-3.5 h-3.5" />
+            </a>
+          </Experience>
+
+          <Experience
+            img={blu}
+            title="Blu's Hacks 2025"
+            img_class="!rounded-2xl"
+            short_description="Los Gatos, CA"
+            description="AI-powered cross-platform app that tracks pantry inventory via OCR and recommends recipes based on available ingredients."
+            time_line="Mar 23, 2025"
+          >
+            <a
+              href="https://devpost.com/software/pantrypilot-vop21b"
+              target="_blank"
+              rel="noreferrer"
+              className="mt-2 inline-flex items-center gap-1.5 dark:bg-neutral-100 bg-neutral-800 px-3 py-1.5 rounded-md text-sm font-medium text-white dark:text-black hover:scale-105 transition-all w-fit"
+            >
+              Devpost <ExternalLink className="w-3.5 h-3.5" />
+            </a>
+          </Experience>
+
+          <Experience
+            img="https://www.hackakhan.org/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flogo.58eda19f.png&w=256&q=75"
+            title="Hackakhan"
+            short_description="Mountain View, CA"
+            img_class="!rounded-2xl"
+            description="Developed an AI-powered platform that connects students with skilled tutors and intelligent tools to provide personalized support in their school subjects."
+            time_line="Jun 8, 2024"
+          >
+            <a
+              href="https://devpost.com/software/eduspark"
+              target="_blank"
+              rel="noreferrer"
+              className="mt-2 inline-flex items-center gap-1.5 dark:bg-neutral-100 bg-neutral-800 px-3 py-1.5 rounded-md text-sm font-medium text-white dark:text-black hover:scale-105 transition-all w-fit"
+            >
+              Devpost <ExternalLink className="w-3.5 h-3.5" />
+            </a>
+          </Experience>
+
+          <Experience
+            img={mateo}
+            title="Mateo Hacks"
+            short_description="San Mateo, California"
+
+            description="Developed a machine learning model to detect and interpret sign language gestures, enabling real-time communication."
+            time_line="Mar 23, 2024"
+          />
+        </div>
+        {/* --- HACKATHONS SECTION END --- */}
+
+
         <div className="mx-auto my-24" id="contact">
           <div className="flex items-center gap-4 mb-6">
             <h1 className="text-3xl font-bold">Get in Touch</h1>
@@ -619,188 +756,223 @@ function App() {
               </div>
               <span className="text-lg font-medium">sasidhar.jasty@gmail.com</span>
               <button
-                onClick={() => {
-                  navigator.clipboard.writeText("sasidhar.jasty@gmail.com");
-                  alert("Email copied to clipboard!");
-                }}
-                className="text-xs bg-neutral-200 dark:bg-neutral-700 px-2 py-1 rounded hover:bg-neutral-300 dark:hover:bg-neutral-600 transition-colors"
+                className="ml-4 bg-neutral-800 dark:bg-neutral-100 text-white dark:text-black px-6 py-2 rounded-full text-sm font-bold transition-all hover:scale-105 active:scale-95"
+                onClick={() => window.location.href = "mailto:sasidhar.jasty@gmail.com"}
               >
-                Copy
+                Email Me
               </button>
-            </div>
-            <div className="flex gap-4">
-              <a
-                href="https://www.linkedin.com/in/sasidhar-jasty/"
-                target="_blank"
-                className="p-3 rounded-full bg-neutral-800 dark:bg-neutral-100 text-white dark:text-black hover:scale-110 transition-transform"
-              >
-                <Linkedin className="w-6 h-6" />
-              </a>
-              <a
-                href="https://github.com"
-                target="_blank"
-                className="p-3 rounded-full bg-neutral-800 dark:bg-neutral-100 text-white dark:text-black hover:scale-110 transition-transform"
-              >
-                <Github className="w-6 h-6" />
-              </a>
-              <a
-                href="https://www.instagram.com/sasidhar.jasty/"
-                target="_blank"
-                className="p-3 rounded-full bg-neutral-800 dark:bg-neutral-100 text-white dark:text-black hover:scale-110 transition-transform"
-                >
-                <Instagram className="w-6 h-6" />
-              </a>
             </div>
           </div>
         </div>
-
-        {/* Command Menu */}
-        {open && (
-          <CommandDialog open={open} onOpenChange={setOpen}  className="bg-neutral-900 border-neutral-700 shadow-2xl">
-            <CommandInput
-              placeholder="Search commands... (Ctrl + K)"
-              className="font-mono text-lg text-white border-none m-3 bg-neutral-800/50 rounded-lg"
-            />
-            <CommandList className="text-white border-neutral-700">
-              <CommandEmpty className="p-6 text-neutral-500 text-center">
-                No results found.
-              </CommandEmpty>
-              <CommandGroup heading="Quick Actions" className="text-neutral-300">
-                {commandItems.map((item, index) => (
-                  <CommandItem
-                    key={index}
-                    className={`text-md text-neutral-300 hover:text-white transition-colors ${
-                      selectedIndex === index
-                        ? "bg-neutral-800 border-l-2 border-blue-500"
-                        : ""
-                    }`}
-                    onSelect={item.action}
-                    onMouseEnter={() => setSelectedIndex(index)}
-                  >
-                    {item.icon}
-                    {item.label}
-                    <kbd className="pointer-events-none absolute right-2 top-2 flex h-5 select-none items-center gap-1 rounded bg-neutral-700 px-1.5 font-mono text-[10px] font-medium text-neutral-300">
-                      <span>{item.shortcut}</span>
-                    </kbd>
-                  </CommandItem>
-                ))}
-              </CommandGroup>
-            </CommandList>
-            <div className="bottom-0 left-0 right-0 flex items-center justify-between w-full px-4 py-3 bg-neutral-800 border-t border-neutral-700 text-neutral-400 text-[11px] font-mono">
-              <div className="flex items-center gap-2">
-                <span className="px-1.5 py-0.5 rounded bg-neutral-700 border border-neutral-600">↵</span>
-                <span>select</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="flex items-center gap-1">
-                  <span className="px-1.5 py-0.5 rounded bg-neutral-700 border border-neutral-600">↑</span>
-                  <span className="px-1.5 py-0.5 rounded bg-neutral-700 border border-neutral-600">↓</span>
-                </span>
-                <span>navigate</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="flex items-center gap-1">
-                  <span className="px-1.5 py-0.5 rounded bg-neutral-700 border border-neutral-600">Cmd</span>
-                  <span>+</span>
-                  <span className="px-1.5 py-0.5 rounded bg-neutral-700 border border-neutral-600">K</span>
-                </span>
-                <span>exit</span>
-              </div>
-            </div>
-          </CommandDialog>
-        )}
-
-        <Dialog open={selectedProject !== null} onOpenChange={() => setSelectedProject(null)}>
-          <DialogContent className="max-w-2xl overflow-hidden p-0 bg-white dark:bg-neutral-900 border-neutral-200 dark:border-neutral-700">
-            {selectedProject && (
-              <div className="flex flex-col">
-                <div className="w-full h-64 overflow-hidden">
-                  <img src={selectedProject.img} className="w-full h-full object-cover" alt={selectedProject.title} />
-                </div>
-                <div className="p-6">
-                  <DialogHeader>
-                    <DialogTitle className="text-2xl font-bold">{selectedProject.title}</DialogTitle>
-                    <DialogDescription className="text-neutral-500 font-medium">
-                      {selectedProject.date}
-                    </DialogDescription>
-                  </DialogHeader>
-                  <p className="mt-4 text-sm leading-relaxed text-neutral-600 dark:text-neutral-400">
-                    {selectedProject.description}
-                  </p>
-                  <div className="flex flex-wrap gap-2 mt-6">
-                    {selectedProject.tags.map((tag, i) => (
-                      <span key={i} className="text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                  <div className="flex gap-3 mt-8">
-                    {selectedProject.GitLink && (
-                      <a href={selectedProject.GitLink} target="_blank" className="flex items-center gap-2 px-4 py-2 rounded-full bg-neutral-800 dark:bg-neutral-100 text-white dark:text-black text-xs font-bold hover:scale-105 transition-transform">
-                        <Github className="w-4 h-4" /> GitHub
-                      </a>
-                    )}
-                    {selectedProject.link && (
-                      <a href={selectedProject.link} target="_blank" className="flex items-center gap-2 px-4 py-2 rounded-full border border-neutral-200 dark:border-neutral-700 text-neutral-800 dark:text-neutral-100 text-xs font-bold hover:scale-105 transition-transform">
-                        <ExternalLink className="w-4 h-4" /> Live Demo
-                      </a>
-                    )}
-                  </div>
-                </div>
-              </div>
-            )}
-          </DialogContent>
-        </Dialog>
-
-        <Dialog>
-          <DialogContent className="max-w-2xl overflow-hidden p-0 bg-white dark:bg-neutral-900 border-neutral-200 dark:border-neutral-700">
-            {selectedProject && (
-              <div className="flex flex-col">
-                <div className="w-full h-64 overflow-hidden">
-                  <img src={selectedProject.img} className="w-full h-full object-cover" alt={selectedProject.title} />
-                </div>
-                <div className="p-6">
-                  <DialogHeader>
-                    <DialogTitle className="text-2xl font-bold">{selectedProject.title}</DialogTitle>
-                    <DialogDescription className="text-neutral-500 font-medium">
-                      {selectedProject.date}
-                    </DialogDescription>
-                  </DialogHeader>
-                  <p className="mt-4 text-sm leading-relaxed text-neutral-600 dark:text-neutral-400">
-                    {selectedProject.description}
-                  </p>
-                  <div className="flex flex-wrap gap-2 mt-6">
-                    {selectedProject.tags.map((tag, i) => (
-                      <span key={i} className="text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                  <div className="flex gap-3 mt-8">
-                    {selectedProject.GitLink && (
-                      <a href={selectedProject.GitLink} target="_blank" className="flex items-center gap-2 px-4 py-2 rounded-full bg-neutral-800 dark:bg-neutral-100 text-white dark:text-black text-xs font-bold hover:scale-105 transition-transform">
-                        <Github className="w-4 h-4" /> GitHub
-                      </a>
-                    )}
-                    {selectedProject.link && (
-                      <a href={selectedProject.link} target="_blank" className="flex items-center gap-2 px-4 py-2 rounded-full border border-neutral-200 dark:border-neutral-700 text-neutral-800 dark:text-neutral-100 text-xs font-bold hover:scale-105 transition-transform">
-                        <ExternalLink className="w-4 h-4" /> Live Demo
-                      </a>
-                    )}
-                  </div>
-                </div>
-              </div>
-            )}
-          </DialogContent>
-        </Dialog>
       </motion.div>
-      {/* Bottom bar */}
-      {/*{scrolled && (
-        <div className="fixed bottom-0 left-0 right-0 bg-gray-800 text-white text-center py-2">
-          Press <span className="px-2 py-1 rounded bg-[#252525] border-white/60 shadow-lg border">Cmd</span> + <span className="px-2 py-1 rounded bg-[#252525] border-white/60 shadow-lg border">K</span> to open command palette
-        </div>
-      )}*/}
-      <Analytics />
+      {selectedProject && (
+        <Dialog
+          open={!!selectedProject}
+          onOpenChange={() => setSelectedProject(null)}
+        >
+          <DialogContent className="p-0 max-h-[90vh] overflow-y-auto">
+
+            <div className="p-6 sm:p-8">
+
+              <DialogHeader className="space-y-2 ">
+                <div className="flex  gap-4">
+                <DialogTitle>
+                  {selectedProject.title}
+                </DialogTitle>
+                <div className="flex flex-wrap gap-3 ">
+
+                  {selectedProject.GitLink && (
+                    <a
+                      href={selectedProject.GitLink}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="
+                      inline-flex
+                      items-center
+                      justify-center
+                      rounded-full
+                      bg-neutral-900
+                      dark:bg-white
+                      px-5
+                      py-2.5
+                      text-sm
+                      font-semibold
+                      text-white
+                      dark:text-black
+                      transition
+                      hover:scale-105
+                      "
+                    >
+                      GitHub →
+                    </a>
+                  )}
+
+
+                  {selectedProject.link && (
+                    <a
+                      href={selectedProject.link}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="
+                      inline-flex
+                      items-center
+                      justify-center
+                      rounded-full
+                      border
+                      border-neutral-200
+                      dark:border-neutral-800
+                      px-5
+                      py-2.5
+                      text-sm
+                      font-semibold
+                      transition
+                      hover:bg-neutral-100
+                      dark:hover:bg-neutral-900
+                      "
+                    >
+                      Live Demo →
+                    </a>
+                  )}
+
+                  </div>
+                </div>
+
+                <DialogDescription>
+                  {selectedProject.date}
+                </DialogDescription>
+              </DialogHeader>
+
+
+              {/* Project Image */}
+              <div className="mt-6 overflow-hidden rounded-2xl border border-neutral-200 dark:border-neutral-800">
+                <img
+                  src={selectedProject.img}
+                  alt={selectedProject.title}
+                  onClick={() => setImagePreview(selectedProject.img)}
+                  className="
+                    w-full
+                    aspect-video
+                    object-cover
+                    cursor-zoom-in
+                    transition-all
+                    duration-500
+                    hover:scale-[1.02]
+                  "
+                />
+                <div
+                className="
+                absolute
+                bottom-3
+                right-3
+                opacity-0
+                group-hover:opacity-100
+                transition
+                bg-black/60
+                text-white
+                px-3
+                py-1.5
+                rounded-full
+                text-xs
+                backdrop-blur
+                "
+                >
+                Click to expand
+                </div>
+
+              </div>
+
+
+              {/* Description */}
+              <p
+                className="
+                mt-6
+                text-sm
+                leading-7
+                text-neutral-600
+                dark:text-neutral-300
+                "
+              >
+                {selectedProject.description}
+              </p>
+
+
+              {/* Tech Stack */}
+              <div className="mt-6">
+                <h3 className="text-xs font-semibold uppercase tracking-wider text-neutral-400 mb-3">
+                  Technologies
+                </h3>
+
+                <div className="flex flex-wrap gap-2">
+                  {selectedProject.tags.map((tag, index) => (
+                    <span
+                      key={index}
+                      className="
+                      rounded-full
+                      border
+                      border-neutral-200
+                      dark:border-neutral-800
+                      bg-neutral-50
+                      dark:bg-neutral-900
+                      px-3
+                      py-1
+                      text-xs
+                      font-medium
+                      text-neutral-700
+                      dark:text-neutral-300
+                      "
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+
+              {/* Actions */}
+
+
+            </div>
+            {imagePreview && (
+              <Dialog
+                open={!!imagePreview}
+                onOpenChange={() => setImagePreview(null)}
+              >
+                <DialogContent
+                  className="
+                  p-4
+                  max-w-[95vw]
+                  max-h-[95vh]
+                  bg-transparent
+                  border-none
+                  shadow-none
+                  "
+                >
+
+                  <div className="relative flex items-center justify-center">
+
+                    <img
+                      src={imagePreview}
+                      alt="Expanded project preview"
+                      className="
+                      max-h-[85vh]
+                      max-w-[90vw]
+                      object-contain
+                      rounded-2xl
+                      shadow-2xl
+                      "
+                    />
+
+                  </div>
+
+                </DialogContent>
+              </Dialog>
+            )}
+
+
+          </DialogContent>
+        </Dialog>
+
+      )}
     </>
   );
 }
