@@ -1,23 +1,25 @@
-"use client";
-
 //import * as React from "react";
 import { useEffect, useState } from "react";
 import { Github, Instagram, Linkedin, Printer,  Mail, ExternalLink } from "lucide-react";
 import { Analytics } from "@vercel/analytics/react";
 
-import {
-  CommandDialog,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList,
-} from "./Components/command.tsx"; // Adjust the import path as necessary
 import pytorch from "./assets/pytorch.png";
 import tensorflow from "./assets/tensorflow.webp";
+import mantecaScholarsImage from "./assets/ms.png"
+import mantecaScholarsImage2 from "./assets/ms2.png";
+import exo1 from "./assets/exo1.png";
+import exo2 from "./assets/exo2.png";
+
 
 import python from "./assets/python.webp";
 import profile from "./assets/profile.jpg";
+
+import viking from "./assets/viking.webp";
+import cogni from "./assets/cogni.jpg";
+import la from "./assets/la.png";
+import blu from "./assets/blu.png";
+import mateo from "./assets/234.webp";
+
 
 import {
   Dialog,
@@ -35,9 +37,6 @@ import AIEA from "./assets/AIEA.png";
 import dyne from "./assets/Dyne.avif";
 import CodeCatalyst from "./assets/CodeCatalyst.png";
 
-//import YMP from "./assets/YMP.png";
-//import HCCC from "./assets/HCCC.png";
-//import Taskify from "./assets/Taskify.png";
 import SHS from "./assets/SHS.png";
 import Experience from "./Components/Experience";
 import buildspace from "./assets/buildspace.png";
@@ -46,9 +45,9 @@ import { motion } from "framer-motion";
 
 function App() {
   const [open, setOpen] = useState(false);
-  const [selectedIndex, setSelectedIndex] = useState(0); // Track the selected index
-  //const [scrolled, setScrolled] = useState(false); // Track if the user has scrolled down
+  const [selectedIndex, setSelectedIndex] = useState(0);
   const [selectedProject, setSelectedProject] = useState(null);
+
   const commandItems = [
     {
       label: "Download Resume",
@@ -82,7 +81,6 @@ function App() {
     },
   ];
 
-  // Toggle the menu when ⌘K is pressed
   useEffect(() => {
     const down = (e) => {
       if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
@@ -106,27 +104,13 @@ function App() {
     return () => document.removeEventListener("keydown", down);
   }, [open, selectedIndex]);
 
-  // Track scroll position
-  /*useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 0);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const runCommand = React.useCallback((command) => {
-    setOpen(false);
-    command();
-  }, []);*/
-
   const Skills = {
     "Languages": ["Python", "Java", "C++", "TypeScript", "JavaScript", "SQL", "HTML", "CSS"],
     "AI/ML": ["PyTorch", "TensorFlow", "Scikit-Learn", "Transformers", "Numpy"],
     "Web/Backend": ["React", "Next.js", "Django", "REST APIs", "Tailwind CSS", "Chakra UI"],
     "Tools & Other": ["Git", "GitHub", "Data Analysis", "Leadership"],
   };
+
   return (
     <>
       <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
@@ -197,7 +181,7 @@ function App() {
           </div>
         </div>
 
-        <div className="mt-16 mb-10">
+        <div className="mt-16 mb-10" id="about">
           <div className="flex items-center gap-4 mb-6">
             <h1 className="text-3xl font-bold">About Me ✍️</h1>
             <div className="h-px flex-1 bg-neutral-200 dark:bg-neutral-800"></div>
@@ -279,7 +263,7 @@ function App() {
           </p>
         </div>
 
-        <div className="flex flex-col gap-8 mt-12">
+        <div className="flex flex-col gap-8 mt-12" id="experience">
           <div className="flex items-center gap-4 mb-2">
             <h1 className="text-3xl font-bold">Experience 🧑‍💻</h1>
             <div className="h-px flex-1 bg-neutral-200 dark:bg-neutral-800"></div>
@@ -368,7 +352,7 @@ function App() {
               img={SHS}
               title={"Sierra High School"}
               short_description={"Class of 2027 | CS Student"}
-              description={"I am a Student at Sierra High, I am currently a 10th Grader with a 4.0 GPA and I am currently taking multiple AP's and Honors courses. While also pursuing my hobby of programming by taking on projects and exploring the latest trends."}
+              description={"I am a Student at Sierra High, I am currently a 11th Grader with a 4.0 GPA and I am currently taking multiple AP's and Honors courses. While also pursuing my hobby of programming by taking on projects and exploring the latest trends."}
               time_line={"November 2023 - Present"}
             />
             <Experience
@@ -380,8 +364,6 @@ function App() {
               time_line={"2023 - 2024"}
               badge={["teamwork", "Entrepretunure"]}
             />
-
-
           </div>
         </div>
         <div className="flex flex-col gap-8 mt-12">
@@ -409,131 +391,79 @@ function App() {
             ))}
           </div>
         </div>
-        <hr className="my-5 mt-14" id="hackathon"></hr>
-        <div className="mx-auto my-24">
-          {" "}
-          <div className="dark:bg-neutral-100 bg-neutral-800 p-2 py-1 rounded-md h-fit    text-white dark:text-black mx-auto w-fit text-lg">
-            Hackathons
-          </div>{" "}
-          <h1 className="w-fit mx-auto text-center text-[50px] font-bold">
-            Check out my recent Hacks
-          </h1>{" "}
-          <p className="mx-auto text-lg w-[80%] text-neutral-400 text-center">
-            I&apos;ve participated in various hackathons, collaborating on projects
-            ranging from simple prototypes to fully functional applications.
-            Here are a few of my favorite.
-          </p>{" "}
-        </div>
-        <div>
-          <Experience
-            img={
-              "https://www.hackakhan.org/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flogo.58eda19f.png&w=256&q=75"
-            }
-            img_class={""}
-            title={"Hackakhan"}
-            short_description={"Built a website for highschoolers"}
-            description={
-              "Built a website that allows students to get help in their school subjects by pairing them with a volunteer that is proficient in that subject."
-            }
-            time_line={"June 2024"}
-            badge={["teamwork", "Entrepretunure"]}
-          >
-            <a
-              href={"https://devpost.com/software/eduspark"}
-              className="dark:bg-neutral-100 bg-neutral-800 p-2 py-1 rounded-md h-fit  text-sm inline-block  text-white dark:text-black"
-            >
-              Devpost ↗️
-            </a>
-          </Experience>
-          <Experience
-            img={
-              "https://www.milpitashacks.com/assets/Milpitas%20Hacks%20Logo-BXy6iFST.png"
-            }
-            title={"Milpitas Hacks"}
-            short_description={"Built a website to manage volunteering"}
-            description={
-              "Developed an application that allows seamless storage of food drives, and a dashboard for volunteers and donors."
-            }
-            time_line={"May 2024"}
-          >
-            <a
-              href={"https://devpost.com/software/wecommunity-drive"}
-              className="dark:bg-neutral-100 bg-neutral-800 p-2 py-1 rounded-md h-fit  text-sm inline-block  text-white dark:text-black"
-            >
-              Devpost ↗️
-            </a>
-          </Experience>
-          <Experience
-            img={
-              "https://images.squarespace-cdn.com/content/v1/586af3379de4bb26823cf49f/51182e2c-694e-414e-8bb8-770f17fbd6de/anovahacks.png?format=100w"
-            }
-            title={"Anova Hacks"}
-            short_description={"Website to help connect users to organizations"}
-            description={
-              "Developed a website that connects volunteers with organizations to match their passions and expertise with causes needing support, from environmental conservation to education. "
-            }
-            time_line={"April 2024"}
-          >
-            <a
-              href={"https://github.com/sasidharJasty/anovahacks"}
-              className="dark:bg-neutral-100 bg-neutral-800 p-2 py-1 rounded-md h-fit  text-sm inline-block  text-white dark:text-black"
-            >
-              Devpost ↗️
-            </a>
-          </Experience>
-          <Experience
-            img={"https://www.mateohacks.com/img/icon.png"}
-            title={"Mateo Hacks"}
-            short_description={"Made a ML model for sign language"}
-            description={
-              "Developed a machine learning model to detect and interpret sign language gestures, enabling real-time communication."
-            }
-            time_line={"March 2024"}
-          ></Experience>
-          <Experience
-            img={"https://i.ibb.co/p35zV71/image-removebg-preview-1.png"}
-            title={"Lancer Hacks VII"}
-            short_description={"Website to report harassment"}
-            img_class={"dark:invert-0 invert"}
-            description={
-              "Created a website that allows individuals to anonymously report harassment or other violations while providing public access to aggregated data for awareness and prevention."
-            }
-            time_line={"March 2024"}
-          ></Experience>
-          <Experience
-            img={
-              "https://d112y698adiu2z.cloudfront.net/photos/production/judge_photos/002/538/373/datas/large.png"
-            }
-            title={"Oasis Hacks"}
-            short_description={"Website to report harassment"}
-            description={
-              "Designed and developed a website that enables students to discover volunteer opportunities and efficiently track their service hours."
-            }
-            time_line={"August 2023"}
-          ></Experience>
-        </div>
 
-        <div className="flex flex-col gap-8 mt-12">
+
+        <div className="flex flex-col gap-8 mt-12" id="projects">
           <div className="flex items-center gap-4 mb-2">
             <h1 className="text-3xl font-bold">My Projects</h1>
             <div className="h-px flex-1 bg-neutral-200 dark:bg-neutral-800"></div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 justify-between mt-4 w-fit mx-auto">
             <Project
-              img={"https://i.ibb.co/Qj8rzbF/Screenshot-376.png"}
-              title="Arbor Bend (In Progress)"
-              date={"Nov 2024 - Present"}
-              link="https://arbor-bend.vercel.app/"
-              description="Currently developing an AI-powered marketplace that enables community residents to securely buy, sell, and exchange goods and services with their neighbors, fostering trust and local connections."
-              tags={["React.JS", "Django", "Shadcn UI", "REST APIs"]}
-              onClick={() => setSelectedProject({
-                title: "Arbor Bend (In Progress)",
-                date: "Nov 2024 - Present",
-                link: "https://arbor-bend.vercel.app/",
-                description: "Currently developing an AI-powered marketplace that enables community residents to securely buy, sell, and exchange goods and services with their neighbors, fostering trust and local connections.",
-                tags: ["React.JS", "Django", "Shadcn UI", "REST APIs"],
-                img: "https://i.ibb.co/Qj8rzbF/Screenshot-376.png"
-              })}
+              img={mantecaScholarsImage}
+              title="Manteca Scholars"
+              date="2026 - Present"
+              link="YOUR_DEPLOYMENT_LINK"
+              GitLink="https://github.com/sasidharJasty/MantecaScholars"
+              description="A production-ready platform connecting students with scholarships, educational resources, and opportunities through a modern, responsive web experience. Serving a growing community with over 100 concurrent users."
+              tags={[
+                "Next.js",
+                "TypeScript",
+                "React",
+                "Supabase",
+                "Tailwind CSS",
+                "Vercel"
+              ]}
+              onClick={() =>
+                setSelectedProject({
+                  title: "Manteca Scholars",
+                  date: "2026 - Present",
+                  link: "YOUR_DEPLOYMENT_LINK",
+                  GitLink: "https://github.com/sasidharJasty/MantecaScholars",
+                  description:
+                    "Manteca Scholars is a production-ready web platform designed to help students discover scholarships, educational resources, and academic opportunities. Built with a modern full-stack architecture, it emphasizes performance, accessibility, and responsive design while serving a growing community with over 100 concurrent users.",
+                  tags: [
+                    "Next.js",
+                    "TypeScript",
+                    "React",
+                    "Supabase",
+                    "Tailwind CSS",
+                    "Vercel"
+                  ],
+                  img: mantecaScholarsImage2,
+                })
+              }
+            />
+            <Project
+              img={exo1}
+              title="ExoNet"
+              date="2026"
+              GitLink="https://github.com/sasidharJasty/ExoNet"
+              description="NASA Space Apps Challenge project leveraging deep learning to analyze stellar light curves for exoplanet detection and classification through an end-to-end machine learning pipeline."
+              tags={[
+                "Python",
+                "PyTorch",
+                "Deep Learning",
+                "Astronomy",
+                "Machine Learning"
+              ]}
+              onClick={() =>
+                setSelectedProject({
+                  title: "ExoNet",
+                  date: "2026",
+                  GitLink: "https://github.com/sasidharJasty/ExoNet",
+                  description:
+                    "NASA Space Apps Challenge project leveraging deep learning to analyze stellar light curves for exoplanet detection and classification through an end-to-end machine learning pipeline.",
+                  tags: [
+                    "Python",
+                    "PyTorch",
+                    "Deep Learning",
+                    "Astronomy",
+                    "Machine Learning"
+                  ],
+                  img: exo2
+                })
+              }
             />
             <Project
               img={"https://i.ibb.co/p1Q2WT9/Screenshot-2024-11-25-200556.png"}
@@ -603,6 +533,128 @@ function App() {
             />
           </div>
         </div>
+
+        {/* --- HACKATHONS SECTION START --- */}
+        <hr className="my-5 mt-14" id="hackathon"></hr>
+        <div className="mx-auto my-24">
+          <div className="dark:bg-neutral-100 bg-neutral-800 p-2 py-1 rounded-md h-fit text-white dark:text-black mx-auto w-fit text-lg">
+            Hackathons
+          </div>
+          <h1 className="w-fit mx-auto text-center text-[50px] font-bold mt-4">
+            Check out my recent Hackathons
+          </h1>
+          <p className="mx-auto text-lg w-[80%] text-neutral-400 text-center mt-2">
+            I&apos;ve participated in various hackathons, collaborating on projects
+            ranging from simple prototypes to fully functional applications.
+            Here are a few of my favorites.
+          </p>
+        </div>
+
+        {/* Grouping in flex-col with gap-6 for clean spacing */}
+        <div className="flex flex-col gap-6">
+          <Experience
+            img={viking}
+            img_class="invert-0 dark:invert"
+
+            title="VikingHacks 2026"
+            short_description="Pleasanton, CA"
+            description="Built a forensic surveillance platform that tracks individuals across camera feeds, generates millisecond-precise investigation timelines, and enables natural language evidence queries using custom computer vision pipelines."
+            time_line="Mar 2026"
+          >
+            <a
+              href="https://devpost.com/software/oversight-2nlvaj"
+              target="_blank"
+              rel="noreferrer"
+              className="mt-2 inline-flex items-center gap-1.5 dark:bg-neutral-100 bg-neutral-800 px-3 py-1.5 rounded-md text-sm font-medium text-white dark:text-black hover:scale-105 transition-all w-fit"
+            >
+              Devpost <ExternalLink className="w-3.5 h-3.5" />
+            </a>
+          </Experience>
+
+          <Experience
+            img={cogni}
+            img_class="!rounded-2xl"
+            title="CogniHacks 2025"
+            short_description="Pleasanton, CA"
+            description="Built an ML-powered healthcare tool that transcribes doctor-patient conversations, extracts medical entities, and generates summaries to improve patient adherence."
+            time_line="Aug 30, 2025"
+          >
+            <a
+              href="https://devpost.com/software/carelink-4bzyhi"
+              target="_blank"
+              rel="noreferrer"
+              className="mt-2 inline-flex items-center gap-1.5 dark:bg-neutral-100 bg-neutral-800 px-3 py-1.5 rounded-md text-sm font-medium text-white dark:text-black hover:scale-105 transition-all w-fit"
+            >
+              Devpost <ExternalLink className="w-3.5 h-3.5" />
+            </a>
+          </Experience>
+
+          <Experience
+            img={la}
+            title="Los Altos Hacks IX"
+            img_class="!rounded-2xl"
+            short_description="Sunnyvale, CA"
+            description="Built an ML-powered platform that forecasts food demand, classifies inventory, and optimizes redistribution to reduce waste and fight hunger."
+            time_line="Apr 6, 2025"
+          >
+            <a
+              href="https://devpost.com/software/nutrifresh"
+              target="_blank"
+              rel="noreferrer"
+              className="mt-2 inline-flex items-center gap-1.5 dark:bg-neutral-100 bg-neutral-800 px-3 py-1.5 rounded-md text-sm font-medium text-white dark:text-black hover:scale-105 transition-all w-fit"
+            >
+              Devpost <ExternalLink className="w-3.5 h-3.5" />
+            </a>
+          </Experience>
+
+          <Experience
+            img={blu}
+            title="Blu's Hacks 2025"
+            img_class="!rounded-2xl"
+            short_description="Los Gatos, CA"
+            description="AI-powered cross-platform app that tracks pantry inventory via OCR and recommends recipes based on available ingredients."
+            time_line="Mar 23, 2025"
+          >
+            <a
+              href="https://devpost.com/software/pantrypilot-vop21b"
+              target="_blank"
+              rel="noreferrer"
+              className="mt-2 inline-flex items-center gap-1.5 dark:bg-neutral-100 bg-neutral-800 px-3 py-1.5 rounded-md text-sm font-medium text-white dark:text-black hover:scale-105 transition-all w-fit"
+            >
+              Devpost <ExternalLink className="w-3.5 h-3.5" />
+            </a>
+          </Experience>
+
+          <Experience
+            img="https://www.hackakhan.org/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flogo.58eda19f.png&w=256&q=75"
+            title="Hackakhan"
+            short_description="Mountain View, CA"
+            img_class="!rounded-2xl"
+            description="Developed an AI-powered platform that connects students with skilled tutors and intelligent tools to provide personalized support in their school subjects."
+            time_line="Jun 8, 2024"
+          >
+            <a
+              href="https://devpost.com/software/eduspark"
+              target="_blank"
+              rel="noreferrer"
+              className="mt-2 inline-flex items-center gap-1.5 dark:bg-neutral-100 bg-neutral-800 px-3 py-1.5 rounded-md text-sm font-medium text-white dark:text-black hover:scale-105 transition-all w-fit"
+            >
+              Devpost <ExternalLink className="w-3.5 h-3.5" />
+            </a>
+          </Experience>
+
+          <Experience
+            img={mateo}
+            title="Mateo Hacks"
+            short_description="San Mateo, California"
+
+            description="Developed a machine learning model to detect and interpret sign language gestures, enabling real-time communication."
+            time_line="Mar 23, 2024"
+          />
+        </div>
+        {/* --- HACKATHONS SECTION END --- */}
+
+
         <div className="mx-auto my-24" id="contact">
           <div className="flex items-center gap-4 mb-6">
             <h1 className="text-3xl font-bold">Get in Touch</h1>
@@ -619,188 +671,15 @@ function App() {
               </div>
               <span className="text-lg font-medium">sasidhar.jasty@gmail.com</span>
               <button
-                onClick={() => {
-                  navigator.clipboard.writeText("sasidhar.jasty@gmail.com");
-                  alert("Email copied to clipboard!");
-                }}
-                className="text-xs bg-neutral-200 dark:bg-neutral-700 px-2 py-1 rounded hover:bg-neutral-300 dark:hover:bg-neutral-600 transition-colors"
+                className="ml-4 bg-neutral-800 dark:bg-neutral-100 text-white dark:text-black px-6 py-2 rounded-full text-sm font-bold transition-all hover:scale-105 active:scale-95"
+                onClick={() => window.location.href = "mailto:sasidhar.jasty@gmail.com"}
               >
-                Copy
+                Email Me
               </button>
-            </div>
-            <div className="flex gap-4">
-              <a
-                href="https://www.linkedin.com/in/sasidhar-jasty/"
-                target="_blank"
-                className="p-3 rounded-full bg-neutral-800 dark:bg-neutral-100 text-white dark:text-black hover:scale-110 transition-transform"
-              >
-                <Linkedin className="w-6 h-6" />
-              </a>
-              <a
-                href="https://github.com"
-                target="_blank"
-                className="p-3 rounded-full bg-neutral-800 dark:bg-neutral-100 text-white dark:text-black hover:scale-110 transition-transform"
-              >
-                <Github className="w-6 h-6" />
-              </a>
-              <a
-                href="https://www.instagram.com/sasidhar.jasty/"
-                target="_blank"
-                className="p-3 rounded-full bg-neutral-800 dark:bg-neutral-100 text-white dark:text-black hover:scale-110 transition-transform"
-                >
-                <Instagram className="w-6 h-6" />
-              </a>
             </div>
           </div>
         </div>
-
-        {/* Command Menu */}
-        {open && (
-          <CommandDialog open={open} onOpenChange={setOpen}  className="bg-neutral-900 border-neutral-700 shadow-2xl">
-            <CommandInput
-              placeholder="Search commands... (Ctrl + K)"
-              className="font-mono text-lg text-white border-none m-3 bg-neutral-800/50 rounded-lg"
-            />
-            <CommandList className="text-white border-neutral-700">
-              <CommandEmpty className="p-6 text-neutral-500 text-center">
-                No results found.
-              </CommandEmpty>
-              <CommandGroup heading="Quick Actions" className="text-neutral-300">
-                {commandItems.map((item, index) => (
-                  <CommandItem
-                    key={index}
-                    className={`text-md text-neutral-300 hover:text-white transition-colors ${
-                      selectedIndex === index
-                        ? "bg-neutral-800 border-l-2 border-blue-500"
-                        : ""
-                    }`}
-                    onSelect={item.action}
-                    onMouseEnter={() => setSelectedIndex(index)}
-                  >
-                    {item.icon}
-                    {item.label}
-                    <kbd className="pointer-events-none absolute right-2 top-2 flex h-5 select-none items-center gap-1 rounded bg-neutral-700 px-1.5 font-mono text-[10px] font-medium text-neutral-300">
-                      <span>{item.shortcut}</span>
-                    </kbd>
-                  </CommandItem>
-                ))}
-              </CommandGroup>
-            </CommandList>
-            <div className="bottom-0 left-0 right-0 flex items-center justify-between w-full px-4 py-3 bg-neutral-800 border-t border-neutral-700 text-neutral-400 text-[11px] font-mono">
-              <div className="flex items-center gap-2">
-                <span className="px-1.5 py-0.5 rounded bg-neutral-700 border border-neutral-600">↵</span>
-                <span>select</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="flex items-center gap-1">
-                  <span className="px-1.5 py-0.5 rounded bg-neutral-700 border border-neutral-600">↑</span>
-                  <span className="px-1.5 py-0.5 rounded bg-neutral-700 border border-neutral-600">↓</span>
-                </span>
-                <span>navigate</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="flex items-center gap-1">
-                  <span className="px-1.5 py-0.5 rounded bg-neutral-700 border border-neutral-600">Cmd</span>
-                  <span>+</span>
-                  <span className="px-1.5 py-0.5 rounded bg-neutral-700 border border-neutral-600">K</span>
-                </span>
-                <span>exit</span>
-              </div>
-            </div>
-          </CommandDialog>
-        )}
-
-        <Dialog open={selectedProject !== null} onOpenChange={() => setSelectedProject(null)}>
-          <DialogContent className="max-w-2xl overflow-hidden p-0 bg-white dark:bg-neutral-900 border-neutral-200 dark:border-neutral-700">
-            {selectedProject && (
-              <div className="flex flex-col">
-                <div className="w-full h-64 overflow-hidden">
-                  <img src={selectedProject.img} className="w-full h-full object-cover" alt={selectedProject.title} />
-                </div>
-                <div className="p-6">
-                  <DialogHeader>
-                    <DialogTitle className="text-2xl font-bold">{selectedProject.title}</DialogTitle>
-                    <DialogDescription className="text-neutral-500 font-medium">
-                      {selectedProject.date}
-                    </DialogDescription>
-                  </DialogHeader>
-                  <p className="mt-4 text-sm leading-relaxed text-neutral-600 dark:text-neutral-400">
-                    {selectedProject.description}
-                  </p>
-                  <div className="flex flex-wrap gap-2 mt-6">
-                    {selectedProject.tags.map((tag, i) => (
-                      <span key={i} className="text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                  <div className="flex gap-3 mt-8">
-                    {selectedProject.GitLink && (
-                      <a href={selectedProject.GitLink} target="_blank" className="flex items-center gap-2 px-4 py-2 rounded-full bg-neutral-800 dark:bg-neutral-100 text-white dark:text-black text-xs font-bold hover:scale-105 transition-transform">
-                        <Github className="w-4 h-4" /> GitHub
-                      </a>
-                    )}
-                    {selectedProject.link && (
-                      <a href={selectedProject.link} target="_blank" className="flex items-center gap-2 px-4 py-2 rounded-full border border-neutral-200 dark:border-neutral-700 text-neutral-800 dark:text-neutral-100 text-xs font-bold hover:scale-105 transition-transform">
-                        <ExternalLink className="w-4 h-4" /> Live Demo
-                      </a>
-                    )}
-                  </div>
-                </div>
-              </div>
-            )}
-          </DialogContent>
-        </Dialog>
-
-        <Dialog>
-          <DialogContent className="max-w-2xl overflow-hidden p-0 bg-white dark:bg-neutral-900 border-neutral-200 dark:border-neutral-700">
-            {selectedProject && (
-              <div className="flex flex-col">
-                <div className="w-full h-64 overflow-hidden">
-                  <img src={selectedProject.img} className="w-full h-full object-cover" alt={selectedProject.title} />
-                </div>
-                <div className="p-6">
-                  <DialogHeader>
-                    <DialogTitle className="text-2xl font-bold">{selectedProject.title}</DialogTitle>
-                    <DialogDescription className="text-neutral-500 font-medium">
-                      {selectedProject.date}
-                    </DialogDescription>
-                  </DialogHeader>
-                  <p className="mt-4 text-sm leading-relaxed text-neutral-600 dark:text-neutral-400">
-                    {selectedProject.description}
-                  </p>
-                  <div className="flex flex-wrap gap-2 mt-6">
-                    {selectedProject.tags.map((tag, i) => (
-                      <span key={i} className="text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                  <div className="flex gap-3 mt-8">
-                    {selectedProject.GitLink && (
-                      <a href={selectedProject.GitLink} target="_blank" className="flex items-center gap-2 px-4 py-2 rounded-full bg-neutral-800 dark:bg-neutral-100 text-white dark:text-black text-xs font-bold hover:scale-105 transition-transform">
-                        <Github className="w-4 h-4" /> GitHub
-                      </a>
-                    )}
-                    {selectedProject.link && (
-                      <a href={selectedProject.link} target="_blank" className="flex items-center gap-2 px-4 py-2 rounded-full border border-neutral-200 dark:border-neutral-700 text-neutral-800 dark:text-neutral-100 text-xs font-bold hover:scale-105 transition-transform">
-                        <ExternalLink className="w-4 h-4" /> Live Demo
-                      </a>
-                    )}
-                  </div>
-                </div>
-              </div>
-            )}
-          </DialogContent>
-        </Dialog>
       </motion.div>
-      {/* Bottom bar */}
-      {/*{scrolled && (
-        <div className="fixed bottom-0 left-0 right-0 bg-gray-800 text-white text-center py-2">
-          Press <span className="px-2 py-1 rounded bg-[#252525] border-white/60 shadow-lg border">Cmd</span> + <span className="px-2 py-1 rounded bg-[#252525] border-white/60 shadow-lg border">K</span> to open command palette
-        </div>
-      )}*/}
-      <Analytics />
     </>
   );
 }
