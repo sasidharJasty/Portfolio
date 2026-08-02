@@ -16,8 +16,8 @@ import HackathonWebsite2 from "./assets/HackathonWebsite2.png";
 import kbImage1 from "./assets/KBimage1.png";
 import kbImage2 from "./assets/KBimage2.png";
 
-import cycleGanImage from "./assets/cycleGan.png";
-import cycleGanImage2 from "./assets/cycleGan2.png";
+import cycleGanImage from "./assets/CycleGan.png";
+import cycleGanImage2 from "./assets/CycleGan2.png";
 
 import lightCurveImage from "./assets/LightCurves.svg";
 import lightCurveImage2 from "./assets/LightCurves2.svg";
