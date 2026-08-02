@@ -1,6 +1,6 @@
-//import * as React from "react";
+import * as React from "react";
 import { useEffect, useState } from "react";
-import { Github, Instagram, Linkedin, Printer,  Mail, ExternalLink } from "lucide-react";
+import { Github, Instagram, Linkedin, Printer,  Mail, ExternalLink, GitBranch } from "lucide-react";
 import { Analytics } from "@vercel/analytics/react";
 
 import pytorch from "./assets/pytorch.png";
@@ -9,6 +9,18 @@ import mantecaScholarsImage from "./assets/ms.png"
 import mantecaScholarsImage2 from "./assets/ms2.png";
 import exo1 from "./assets/exo1.png";
 import exo2 from "./assets/exo2.png";
+
+import HackathonWebsite from "./assets/HackathonWebsite1.png";
+import HackathonWebsite2 from "./assets/HackathonWebsite2.png";
+
+import kbImage1 from "./assets/KBimage1.png";
+import kbImage2 from "./assets/KBimage2.png";
+
+import cycleGanImage from "./assets/cycleGan.png";
+import cycleGanImage2 from "./assets/cycleGan2.png";
+
+import lightCurveImage from "./assets/LightCurves.svg";
+import lightCurveImage2 from "./assets/LightCurves2.svg";
 
 
 import python from "./assets/python.webp";
@@ -47,6 +59,7 @@ function App() {
   const [open, setOpen] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [selectedProject, setSelectedProject] = useState(null);
+  const [imagePreview, setImagePreview] = useState(null);
 
   const commandItems = [
     {
@@ -125,7 +138,8 @@ function App() {
             repeat: Infinity,
             ease: "linear"
           }}
-          className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-blue-500/10 blur-[120px]"
+          className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-blue-500/10 blur-[120px] z-0 pointer-events-none"
+
         />
         <motion.div
           animate={{
@@ -138,12 +152,12 @@ function App() {
             repeat: Infinity,
             ease: "linear"
           }}
-          className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-purple-500/10 blur-[120px]"
+          className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-purple-500/10 blur-[120px] z-0 pointer-events-none"
         />
       </div>
       <Navbar />
       <motion.div
-        className="max-w-screen md:w-[800px] w-screen min-w-screen md:px-0 px-2 md:min-w-[800px] mx-auto mt-24 text-left scroll-smooth"
+        className="relative z-10 max-w-screen md:w-[800px] w-screen min-w-screen md:px-0 px-2 md:min-w-[800px] mx-auto mt-24 text-left scroll-smooth"
         id="home"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -399,13 +413,144 @@ function App() {
             <div className="h-px flex-1 bg-neutral-200 dark:bg-neutral-800"></div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 justify-between mt-4 w-fit mx-auto">
+          <Project
+            img={cycleGanImage}
+            title="CycleGAN"
+            date="2025"
+            GitLink="https://github.com/sasidharJasty/CycleGAN"
+            description="Built a PyTorch-based CycleGAN to tackle unpaired image-to-image translation. I designed custom generator and discriminator networks from scratch, heavily tuning cycle-consistency and adversarial loss functions. The biggest challenge was managing the end-to-end training loop and fighting off mode collapse to actually get high-fidelity, convincing image synthesis without needing paired datasets."
+            tags={[
+              "Python",
+              "PyTorch",
+              "GANs",
+              "Computer Vision",
+              "Deep Learning"
+            ]}
+            onClick={() =>
+              setSelectedProject({
+                title: "CycleGAN",
+                date: "2025",
+                GitLink: "https://github.com/sasidharJasty/CycleGAN",
+                description:
+                  "Built a PyTorch-based CycleGAN to tackle unpaired image-to-image translation. I designed custom generator and discriminator networks from scratch, heavily tuning cycle-consistency and adversarial loss functions. The biggest challenge was managing the end-to-end training loop and fighting off mode collapse to actually get high-fidelity, convincing image synthesis without needing paired datasets.",
+                tags: [
+                  "Python",
+                  "PyTorch",
+                  "GANs",
+                  "Computer Vision",
+                  "Deep Learning"
+                ],
+                img: cycleGanImage2
+              })
+            }
+          />
+          <Project
+            img={lightCurveImage}
+            title="LightCurves"
+            date="2026"
+            GitLink="https://github.com/sasidharJasty/LightCurves"
+            description="Created a machine learning toolkit specifically for analyzing time-series astronomical light curves to help identify exoplanets. I built automated data pipelines with Pandas and NumPy to clean up incredibly noisy flux data, then used Scikit-Learn to engineer periodic features and train the predictive models needed to automatically spot transit events."
+            tags={[
+              "Python",
+              "Pandas",
+              "NumPy",
+              "Scikit-Learn",
+              "Data Science"
+            ]}
+            onClick={() =>
+              setSelectedProject({
+                title: "LightCurves",
+                date: "2026",
+                GitLink: "https://github.com/sasidharJasty/LightCurves",
+                description:
+                  "Created a machine learning toolkit specifically for analyzing time-series astronomical light curves to help identify exoplanets. I built automated data pipelines with Pandas and NumPy to clean up incredibly noisy flux data, then used Scikit-Learn to engineer periodic features and train the predictive models needed to automatically spot transit events.",
+                tags: [
+                  "Python",
+                  "Pandas",
+                  "NumPy",
+                  "Scikit-Learn",
+                  "Data Science"
+                ],
+                img: lightCurveImage2
+              })
+            }
+          />
+          <Project
+            img={kbImage1}
+            title="LLM Logic"
+            date="2026 - Present"
+            GitLink="https://github.com/sasidharJasty/KB"
+            link="https://llm-logic.vercel.app/"
+            description="A neuro-symbolic AI framework that bridges the creativity of LLMs with the strict rules of deterministic reasoning engines. I implemented forward and backward chaining for first-order logic evaluation, and used LangChain and LangGraph to build stateful, multi-agent workflows. It's essentially a sandbox for prototyping AI that can actually perform structured deduction."
+            tags={[
+              "Python",
+              "LangGraph",
+              "LangChain",
+              "First-Order Logic",
+              "AI Agents",
+              "Symbolic AI"
+            ]}
+            onClick={() =>
+              setSelectedProject({
+                title: "LLM Logic",
+                date: "2026 - Present",
+                GitLink: "https://github.com/sasidharJasty/KB",
+                link: "https://llm-logic.vercel.app/",
+                description:
+                  "A neuro-symbolic AI framework that bridges the creativity of LLMs with the strict rules of deterministic reasoning engines. I implemented forward and backward chaining for first-order logic evaluation, and used LangChain and LangGraph to build stateful, multi-agent workflows. It's essentially a sandbox for prototyping AI that can actually perform structured deduction.",
+                tags: [
+                  "Python",
+                  "LangGraph",
+                  "LangChain",
+                  "First-Order Logic",
+                  "AI Agents",
+                  "Symbolic AI"
+                ],
+                img: kbImage2
+              })
+            }
+          />
+
+          <Project
+            img={exo1}
+            title="ExoNet"
+            date="2026"
+            link="https://exo-net.vercel.app/"
+            GitLink="https://github.com/sasidharJasty/ExoNet"
+            description="An end-to-end deep learning pipeline that classifies exoplanet transits from raw stellar data. I built a custom PyTorch neural network and spent a lot of time wrestling with the preprocessing—turning messy temporal arrays into normalized tensors. Iteratively tuning the model to maintain high precision-recall on a hugely imbalanced dataset was tough but rewarding."
+            tags={[
+              "Python",
+              "PyTorch",
+              "Deep Learning",
+              "Astronomy",
+              "Machine Learning"
+            ]}
+            onClick={() =>
+              setSelectedProject({
+                title: "ExoNet",
+                date: "2026",
+                link:"https://exo-net.vercel.app/",
+                GitLink: "https://github.com/sasidharJasty/ExoNet",
+                description:
+                  "An end-to-end deep learning pipeline that classifies exoplanet transits from raw stellar data. I built a custom PyTorch neural network and spent a lot of time wrestling with the preprocessing—turning messy temporal arrays into normalized tensors. Iteratively tuning the model to maintain high precision-recall on a hugely imbalanced dataset was tough but rewarding.",
+                tags: [
+                  "Python",
+                  "PyTorch",
+                  "Deep Learning",
+                  "Astronomy",
+                  "Machine Learning"
+                ],
+                img: exo2
+              })
+            }
+            />
             <Project
               img={mantecaScholarsImage}
               title="Manteca Scholars"
               date="2026 - Present"
-              link="YOUR_DEPLOYMENT_LINK"
+              link="https://www.mantecascholars.org/"
               GitLink="https://github.com/sasidharJasty/MantecaScholars"
-              description="A production-ready platform connecting students with scholarships, educational resources, and opportunities through a modern, responsive web experience. Serving a growing community with over 100 concurrent users."
+              description="Built a full-stack platform from the ground up using Next.js and Supabase to help local students easily find scholarships and educational resources. It's a production-ready site with secure authentication and a snappy, responsive UI. It's been incredibly rewarding to see it grow and smoothly handle over 100 concurrent users looking for academic opportunities."
               tags={[
                 "Next.js",
                 "TypeScript",
@@ -418,10 +563,10 @@ function App() {
                 setSelectedProject({
                   title: "Manteca Scholars",
                   date: "2026 - Present",
-                  link: "YOUR_DEPLOYMENT_LINK",
+                  link: "https://www.mantecascholars.org/",
                   GitLink: "https://github.com/sasidharJasty/MantecaScholars",
                   description:
-                    "Manteca Scholars is a production-ready web platform designed to help students discover scholarships, educational resources, and academic opportunities. Built with a modern full-stack architecture, it emphasizes performance, accessibility, and responsive design while serving a growing community with over 100 concurrent users.",
+                    "Built a full-stack platform from the ground up using Next.js and Supabase to help local students easily find scholarships and educational resources. It's a production-ready site with secure authentication and a snappy, responsive UI. It's been incredibly rewarding to see it grow and smoothly handle over 100 concurrent users looking for academic opportunities.",
                   tags: [
                     "Next.js",
                     "TypeScript",
@@ -434,103 +579,43 @@ function App() {
                 })
               }
             />
-            <Project
-              img={exo1}
-              title="ExoNet"
-              date="2026"
-              GitLink="https://github.com/sasidharJasty/ExoNet"
-              description="NASA Space Apps Challenge project leveraging deep learning to analyze stellar light curves for exoplanet detection and classification through an end-to-end machine learning pipeline."
-              tags={[
-                "Python",
-                "PyTorch",
-                "Deep Learning",
-                "Astronomy",
-                "Machine Learning"
-              ]}
-              onClick={() =>
-                setSelectedProject({
-                  title: "ExoNet",
-                  date: "2026",
-                  GitLink: "https://github.com/sasidharJasty/ExoNet",
-                  description:
-                    "NASA Space Apps Challenge project leveraging deep learning to analyze stellar light curves for exoplanet detection and classification through an end-to-end machine learning pipeline.",
-                  tags: [
-                    "Python",
-                    "PyTorch",
-                    "Deep Learning",
-                    "Astronomy",
-                    "Machine Learning"
-                  ],
-                  img: exo2
-                })
-              }
-            />
-            <Project
-              img={"https://i.ibb.co/p1Q2WT9/Screenshot-2024-11-25-200556.png"}
-              title={"Hackathon Website (In Progress)"}
-              date={"Sept 2024 - Present"}
-              link={"https://cal-hacks25.vercel.app/"}
-              description={"Developed a dynamic hackathon website featuring advanced animations to enhance user engagement and provide an interactive experience."}
-              tags={["Next.js", "Typescript", "Magic UI", "Framer Motion"]}
-              onClick={() => setSelectedProject({
-                title: "Hackathon Website (In Progress)",
-                date: "Sept 2024 - Present",
-                link: "https://cal-hacks25.vercel.app/",
-                description: "Developed a dynamic hackathon website featuring advanced animations to enhance user engagement and provide an interactive experience.",
-                tags: ["Next.js", "Typescript", "Magic UI", "Framer Motion"],
-                img: "https://i.ibb.co/p1Q2WT9/Screenshot-2024-11-25-200556.png"
-              })}
-            />
-            <Project
-              img={project1}
-              date={"Oct 2024 - Nov 2024"}
-              title={"Personal Portfolio Website"}
-              link={"https://sjasty-portfolio.vercel.app/"}
-              GitLink={"https://github.com/sasidharJasty/Portfolio"}
-              description={"A website built from scratch using React and Tailwind CSS."}
-              tags={["React", "Tailwind", "Responsive"]}
-              onClick={() => setSelectedProject({
-                title: "Personal Portfolio Website",
-                date: "Oct 2024 - Nov 2024",
-                link: "https://sjasty-portfolio.vercel.app/",
-                GitLink: "https://github.com/sasidharJasty/Portfolio",
-                description: "A website built from scratch using React and Tailwind CSS.",
-                tags: ["React", "Tailwind", "Responsive"],
-                img: project1
-              })}
-            />
-            <Project
-              img={"https://i.ibb.co/frbVz2t/Screenshot-2024-11-25-183935.jpg"}
-              title={"Stock Market Prediction"}
-              date={"Nov 2024 - Nov 2024"}
-              link={"https://stockmarketprediction-5hejvhbgcu3bfxpbeys9ye.streamlit.app/"}
-              description={"Developed and deployed a stock price prediction app with sentiment analysis for real-time financial insights, utilizing linear regression and data analysis and visualization frameworks."}
-              tags={["Streamlit", "yFinance", "Pandas", "Numpy", "Skikit-learn"]}
-              onClick={() => setSelectedProject({
-                title: "Stock Market Prediction",
-                date: "Nov 2024 - Nov 2024",
-                link: "https://stockmarketprediction-5hejvhbgcu3bfxpbeys9ye.streamlit.app/",
-                description: "Developed and deployed a stock price prediction app with sentiment analysis for real-time financial insights, utilizing linear regression and data analysis and visualization frameworks.",
-                tags: ["Streamlit", "yFinance", "Pandas", "Numpy", "Skikit-learn"],
-                img: "https://i.ibb.co/frbVz2t/Screenshot-2024-11-25-183935.jpg"
-              })}
-            />
-            <Project
-              img={"https://i.ibb.co/Xtm5RS9/Screenshot-2024-11-25-195606.png"}
-              title={"Workflow"}
-              link={"https://taskify-theta-woad.vercel.app/"}
-              date={"June 2024 - Nov 2024"}
-              description={"Developed a comprehensive workflow management solution designed to enhance productivity, communication, and collaboration across your team."}
-              tags={["React", "PostgreSQL", "Django", "Tailwind CSS", "Magic UI"]}
-              onClick={() => setSelectedProject({
-                title: "Workflow",
-                date: "June 2024 - Nov 2024",
-                link: "https://taskify-theta-woad.vercel.app/",
-                description: "Developed a comprehensive workflow management solution designed to enhance productivity, communication, and collaboration across your team.",
-                tags: ["React", "PostgreSQL", "Django", "Tailwind CSS", "Magic UI"],
-                img: "https://i.ibb.co/Xtm5RS9/Screenshot-2024-11-25-195606.png"
-              })}
-            />
+          <Project
+            img={HackathonWebsite}
+            title={"Hackathon Website"}
+            date={"Sept 2024 - Present"}
+            link={"https://sierrahacks-ashen.vercel.app/"}
+            GitLink={"https://github.com/sasidharJasty/sierrahacks"}
+            description={"Designed and developed the main landing and registration portal for SierraHacks using Next.js and TypeScript. I wanted the site to feel alive and engaging, so I heavily utilized Framer Motion for smooth, interactive animations. It was awesome seeing it in the wild—it easily handled traffic spikes, driving over 120 registrations and running flawlessly for the past year."}
+            tags={["Next.js", "Typescript", "Magic UI", "Framer Motion"]}
+            onClick={() => setSelectedProject({
+              title: "Hackathon Website",
+              date: "Sept 2024 - Present",
+              link: "https://sierrahacks-ashen.vercel.app/",
+              GitLink: "https://github.com/sasidharJasty/sierrahacks",
+              description: "Designed and developed the main landing and registration portal for SierraHacks using Next.js and TypeScript. I wanted the site to feel alive and engaging, so I heavily utilized Framer Motion for smooth, interactive animations. It was awesome seeing it in the wild—it easily handled traffic spikes, driving over 120 registrations and running flawlessly for the past year.",
+              tags: ["Next.js", "Typescript", "Magic UI", "Framer Motion"],
+              img: HackathonWebsite2
+            })}
+          />
+          <Project
+            img={project1}
+            date={"Oct 2024 - present"}
+            title={"Personal Portfolio Website"}
+            link={"https://sjasty.vercel.app/"}
+            GitLink={"https://github.com/sasidharJasty/Portfolio"}
+            description={"Built my personal slice of the internet from scratch using React and Tailwind CSS. I focused heavily on making the design clean, responsive, and easily maintainable through reusable components. It was a great way to solidify my frontend fundamentals while creating something uniquely mine."}
+            tags={["React", "Tailwind", "Responsive"]}
+            onClick={() => setSelectedProject({
+              title: "Personal Portfolio Website",
+              date: "Oct 2024 - present",
+              link: "https://sjasty.vercel.app/",
+              GitLink: "https://github.com/sasidharJasty/Portfolio",
+              description: "Built my personal slice of the internet from scratch using React and Tailwind CSS. I focused heavily on making the design clean, responsive, and easily maintainable through reusable components. It was a great way to solidify my frontend fundamentals while creating something uniquely mine.",
+              tags: ["React", "Tailwind", "Responsive"],
+              img: project1
+            })}
+          />
+
           </div>
         </div>
 
@@ -680,6 +765,214 @@ function App() {
           </div>
         </div>
       </motion.div>
+      {selectedProject && (
+        <Dialog
+          open={!!selectedProject}
+          onOpenChange={() => setSelectedProject(null)}
+        >
+          <DialogContent className="p-0 max-h-[90vh] overflow-y-auto">
+
+            <div className="p-6 sm:p-8">
+
+              <DialogHeader className="space-y-2 ">
+                <div className="flex  gap-4">
+                <DialogTitle>
+                  {selectedProject.title}
+                </DialogTitle>
+                <div className="flex flex-wrap gap-3 ">
+
+                  {selectedProject.GitLink && (
+                    <a
+                      href={selectedProject.GitLink}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="
+                      inline-flex
+                      items-center
+                      justify-center
+                      rounded-full
+                      bg-neutral-900
+                      dark:bg-white
+                      px-5
+                      py-2.5
+                      text-sm
+                      font-semibold
+                      text-white
+                      dark:text-black
+                      transition
+                      hover:scale-105
+                      "
+                    >
+                      GitHub →
+                    </a>
+                  )}
+
+
+                  {selectedProject.link && (
+                    <a
+                      href={selectedProject.link}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="
+                      inline-flex
+                      items-center
+                      justify-center
+                      rounded-full
+                      border
+                      border-neutral-200
+                      dark:border-neutral-800
+                      px-5
+                      py-2.5
+                      text-sm
+                      font-semibold
+                      transition
+                      hover:bg-neutral-100
+                      dark:hover:bg-neutral-900
+                      "
+                    >
+                      Live Demo →
+                    </a>
+                  )}
+
+                  </div>
+                </div>
+
+                <DialogDescription>
+                  {selectedProject.date}
+                </DialogDescription>
+              </DialogHeader>
+
+
+              {/* Project Image */}
+              <div className="mt-6 overflow-hidden rounded-2xl border border-neutral-200 dark:border-neutral-800">
+                <img
+                  src={selectedProject.img}
+                  alt={selectedProject.title}
+                  onClick={() => setImagePreview(selectedProject.img)}
+                  className="
+                    w-full
+                    aspect-video
+                    object-cover
+                    cursor-zoom-in
+                    transition-all
+                    duration-500
+                    hover:scale-[1.02]
+                  "
+                />
+                <div
+                className="
+                absolute
+                bottom-3
+                right-3
+                opacity-0
+                group-hover:opacity-100
+                transition
+                bg-black/60
+                text-white
+                px-3
+                py-1.5
+                rounded-full
+                text-xs
+                backdrop-blur
+                "
+                >
+                Click to expand
+                </div>
+
+              </div>
+
+
+              {/* Description */}
+              <p
+                className="
+                mt-6
+                text-sm
+                leading-7
+                text-neutral-600
+                dark:text-neutral-300
+                "
+              >
+                {selectedProject.description}
+              </p>
+
+
+              {/* Tech Stack */}
+              <div className="mt-6">
+                <h3 className="text-xs font-semibold uppercase tracking-wider text-neutral-400 mb-3">
+                  Technologies
+                </h3>
+
+                <div className="flex flex-wrap gap-2">
+                  {selectedProject.tags.map((tag, index) => (
+                    <span
+                      key={index}
+                      className="
+                      rounded-full
+                      border
+                      border-neutral-200
+                      dark:border-neutral-800
+                      bg-neutral-50
+                      dark:bg-neutral-900
+                      px-3
+                      py-1
+                      text-xs
+                      font-medium
+                      text-neutral-700
+                      dark:text-neutral-300
+                      "
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+
+              {/* Actions */}
+
+
+            </div>
+            {imagePreview && (
+              <Dialog
+                open={!!imagePreview}
+                onOpenChange={() => setImagePreview(null)}
+              >
+                <DialogContent
+                  className="
+                  p-4
+                  max-w-[95vw]
+                  max-h-[95vh]
+                  bg-transparent
+                  border-none
+                  shadow-none
+                  "
+                >
+
+                  <div className="relative flex items-center justify-center">
+
+                    <img
+                      src={imagePreview}
+                      alt="Expanded project preview"
+                      className="
+                      max-h-[85vh]
+                      max-w-[90vw]
+                      object-contain
+                      rounded-2xl
+                      shadow-2xl
+                      "
+                    />
+
+                  </div>
+
+                </DialogContent>
+              </Dialog>
+            )}
+
+
+          </DialogContent>
+        </Dialog>
+
+      )}
     </>
   );
 }

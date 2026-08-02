@@ -1,4 +1,5 @@
 import { useState } from "react";
+import * as React from "react";
 //import Badge from "./Badge";
 
 export default function Experience(props) {
@@ -19,7 +20,7 @@ export default function Experience(props) {
 
   return (
     <div
-      className="w-full relative flex flex-col cursor-pointer my-1 p-2 rounded-2xl border border-transparent hover:border-neutral-200 dark:hover:border-neutral-700 hover:bg-neutral-50 dark:hover:bg-neutral-800/50 transition-all duration-300 group"
+      className=" w-full relative flex flex-col cursor-pointer my-1 p-2 rounded-2xl border border-transparent hover:border-neutral-200 dark:hover:border-neutral-700 hover:bg-neutral-50 dark:hover:bg-neutral-800/50 transition-all duration-300 group"
       onClick={handleClick}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
