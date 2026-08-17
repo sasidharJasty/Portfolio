@@ -64,7 +64,7 @@ function App() {
   const commandItems = [
     {
       label: "Download Resume",
-      action: () => window.open("https://drive.google.com/file/d/1xFxMNb-wYGq_m_tc8eAH44M5cQLzA109/view?usp=sharing", "_blank"),
+      action: () => window.open("https://drive.google.com/file/d/12cuxwmtud7DUUIOt1aczvd-O1vntUgfP/view?usp=sharing", "_blank"),
       shortcut: "Ctrl + P",
       icon: <Printer className="mr-2 h-4 w-4" />,
     },
