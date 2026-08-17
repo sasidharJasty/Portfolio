@@ -15,6 +15,19 @@
 html {
   scroll-behavior: smooth;
 }
+html, body {
+  /* Hide scrollbar for Chrome, Safari, and newer Edge */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for Firefox */
+  scrollbar-width: none;
+
+  /* Hide scrollbar for Internet Explorer and legacy Edge */
+  -ms-overflow-style: none;
+}
+
 
 @media (prefers-color-scheme: dark) {
   :root {
